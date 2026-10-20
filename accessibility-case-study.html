@@ -1,0 +1,2149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility — Sunghye Park</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    html { margin: 0; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, sans-serif;
+      --surface: #fff;
+      --surface-soft: #f7f7f5;
+      --ink: #000;
+      --text: #333;
+      --muted: #656565;
+      --line: #e6e6e6;
+      --image-shadow:
+        0 2px 6px rgba(0,0,0,.04),
+        0 12px 32px rgba(0,0,0,.08);
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    body.dark {
+      --surface: #0f0f0f;
+      --surface-soft: #171717;
+      --ink: #f5f5f5;
+      --text: #d0d0d0;
+      --muted: #aaa;
+      --line: #2a2a2a;
+      --image-shadow:
+        0 0 0 1px rgba(255,255,255,.08),
+        0 12px 32px rgba(0,0,0,.3);
+    }
+
+    a { color: inherit; text-underline-offset: 4px; }
+    button { font: inherit; cursor: pointer; }
+    strong { font-weight: 600; color: var(--ink); }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    /* Header */
+
+    .header {
+      height: 110px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 52px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-name { font-size: 18px; font-weight: 600; }
+
+    .portfolio-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: #a0a0a0;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      border-radius: 999px;
+      background: #111;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+
+    .nav-link.active { background: #2a2a2a; }
+
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FCE300;
+      opacity: 0;
+    }
+
+    .nav-link.active .nav-dot { opacity: 1; }
+    .nav-text { font-size: 13px; color: #fff; }
+
+    .header-actions {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-button {
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: #FCE300;
+      color: #000;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .theme-button {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .theme-icon { position: relative; width: 18px; height: 18px; }
+    #sun, #moon { position: absolute; inset: 0; }
+    #moon { opacity: 0; }
+
+    /* Case study */
+
+    .case-main { width: 100%; padding: 111px 68px 140px; }
+    .case-container { max-width: 1180px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color .18s ease;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible { color: var(--ink); }
+
+    .back-link-top {
+      position: absolute;
+      top: 135px;
+      left: 52px;
+      margin: 0;
+    }
+
+    .back-link-arrow {
+      display: inline-block;
+      transition: transform .18s ease;
+    }
+
+    .back-link:hover .back-link-arrow {
+      transform: translateX(-3px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0,1.55fr) minmax(280px,.7fr);
+      gap: 100px;
+      align-items: start;
+      padding: 92px 0 100px;
+    }
+
+    .hero > div:first-child { padding-top: 36px; }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 24px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-title {
+      margin: 0 0 26px;
+      font-family: "Anton", sans-serif;
+      font-size: clamp(56px,6.2vw,84px);
+      font-weight: 400;
+      line-height: .9;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .project-meta { padding-top: 40px; }
+    .meta-item { margin-bottom: 28px; }
+    .meta-item:last-child { margin-bottom: 0; }
+
+    .meta-label {
+      margin-bottom: 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* Index */
+
+    .project-index {
+      margin-bottom: 150px;
+      padding: 26px 0 20px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .index-label {
+      margin-bottom: 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .index-row {
+      display: grid;
+      grid-template-columns: 4px 62px minmax(300px,.95fr) 1fr;
+      gap: 20px;
+      align-items: center;
+      min-height: 84px;
+      text-decoration: none;
+    }
+
+    .index-row:hover { background: var(--surface-soft); }
+
+    .index-bar {
+      width: 4px;
+      height: 28px;
+      background: transparent;
+    }
+
+    .index-row:hover .index-bar { background: #FCE300; }
+
+    .index-number {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: var(--muted);
+    }
+
+    .index-title {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+
+    .index-desc {
+      max-width: 430px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* Sections */
+
+    .case-section {
+      margin-bottom: 150px;
+      scroll-margin-top: 40px;
+    }
+
+    .section-header { margin-bottom: 42px; }
+
+    .section-number {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .section-title {
+      max-width: 820px;
+      margin: 0;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.04;
+      letter-spacing: -.035em;
+    }
+
+    .text-column { max-width: 720px; }
+
+    .body-text {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .body-text + .body-text { margin-top: 18px; }
+
+    .subheading {
+      margin: 48px 0 18px;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+    }
+
+    .caption {
+      margin: 14px 0 0;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .caption-centered { text-align: center; }
+
+    .sample-label {
+      margin-bottom: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Video */
+
+    .video-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 250px;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .video-frame {
+      min-width: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .focus-question {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .focus-question.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .focus-question h3 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -.035em;
+    }
+
+    .focus-question p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .video-observation { margin-top: 36px; }
+
+    /* Contrast */
+
+    .contrast-layout {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,.8fr);
+      gap: 64px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .contrast-figure { margin: 0; }
+
+    .contrast-figure img {
+      display: block;
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      margin-left: auto;
+      border-radius: 8px;
+      box-shadow: var(--image-shadow);
+    }
+
+    .contrast-copy .sample-label { margin-bottom: 12px; }
+
+    .ratio {
+      margin-bottom: 24px;
+      font-size: 64px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -.05em;
+    }
+
+    /* Before / Proposed */
+
+    .comparison {
+      margin-top: 40px;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .button-stage {
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: transparent;
+    }
+
+    .buy-button {
+      padding: 12px 44px;
+      border: 0;
+      border-radius: 999px;
+      background: #2970c2;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .baseline-ring { outline: 1px solid #101010; }
+
+    .proposed-ring {
+      box-shadow: 0 0 0 3px #101010, 0 0 0 6px #FFDD00;
+    }
+
+    /* Why yellow */
+
+    .why-yellow-sequence { margin-top: 28px; }
+
+    .why-yellow-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .why-yellow-row + .why-yellow-row { margin-top: 40px; }
+    .why-yellow-figure { margin: 0; }
+
+    .why-yellow-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: var(--image-shadow);
+    }
+
+    .why-yellow-row:first-child .why-yellow-figure img {
+      max-width: 350px;
+      margin: auto;
+    }
+
+    /* Additional controls */
+
+    .additional-focus-examples { margin-top: 28px; }
+
+    .controls-heading {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .component-comparison {
+      padding: 10px 0;
+      border: none;
+    }
+
+    .component-pair {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .component-pair .sample-label { margin-bottom: 10px; }
+
+    .component-image-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .component-image-stage > img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: var(--image-shadow);
+    }
+
+    .after-window {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: var(--image-shadow);
+    }
+
+    .after-window img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    /* Cognitive accessibility */
+
+    .screen-figure { margin: 0 0 36px; }
+
+    .screen-figure img {
+      display: block;
+      width: 100%;
+      max-width: 850px;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: var(--image-shadow);
+    }
+
+    .screen-figure figcaption {
+      width: 100%;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .change-list { margin-top: 40px; }
+
+    .change-row {
+      display: grid;
+      grid-template-columns: 40px 220px minmax(0,1fr);
+      gap: 22px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .change-number { font-size: 12px; color: var(--muted); }
+
+    .change-row h3 {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .change-row p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .change-row:first-child p { align-self: center; }
+
+    .project-note {
+      margin-top: 40px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* Image hover */
+
+    .zoom-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      cursor: zoom-in;
+      box-shadow: var(--image-shadow);
+      transition:
+        transform .28s cubic-bezier(.22,1,.36,1),
+        box-shadow .28s ease;
+    }
+
+    .zoom-card-content {
+      display: block;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+
+    .zoom-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+    }
+
+    .zoom-card:hover,
+    .zoom-card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.14);
+    }
+
+    .zoom-card:hover img,
+    .zoom-card:focus-visible img { transform: scale(1.035); }
+
+    .zoom-card::after {
+      content: "";
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background:
+        #fff
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5M11 8v6M8 11h6'/%3E%3C/svg%3E")
+        center / 18px 18px no-repeat;
+      box-shadow: 0 4px 14px rgba(0,0,0,.18);
+      opacity: 0;
+      transform: scale(.85);
+      pointer-events: none;
+      transition: opacity .22s ease, transform .28s ease;
+    }
+
+    .zoom-card:hover::after,
+    .zoom-card:focus-visible::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Original image viewer */
+
+    .image-dialog {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: #0a0a0a;
+      color: #fff;
+    }
+
+    .image-dialog[open] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-dialog::backdrop { background: rgba(0,0,0,.85); }
+
+    .image-dialog-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      flex: none;
+    }
+
+    .image-dialog-title { font-size: 13px; line-height: 1.5; }
+    .image-dialog-actions { display: flex; gap: 8px; flex: none; }
+
+    .image-dialog-button {
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 999px;
+      background: transparent;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .image-dialog-button:hover { background: rgba(255,255,255,.12); }
+    .image-dialog-button[hidden] { display: none; }
+
+    .image-dialog-button:focus-visible,
+    .image-dialog-stage:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    .image-dialog-stage {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      padding: 24px;
+      touch-action: pan-x pan-y pinch-zoom;
+    }
+
+    .image-dialog-canvas {
+      min-width: 100%;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-dialog-img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100dvh - 115px);
+      cursor: zoom-in;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .image-dialog.actual .image-dialog-canvas {
+      width: max-content;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .image-dialog.actual .image-dialog-img {
+      max-width: none;
+      max-height: none;
+      cursor: grab;
+    }
+
+    .image-dialog.actual .dragging .image-dialog-img {
+      cursor: grabbing;
+    }
+
+    .image-dialog.no-zoom .image-dialog-img { cursor: default; }
+
+    /* Floating reading navigation */
+
+    .floating-menu {
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      transform: translateY(-50%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .25s ease, visibility .25s ease;
+    }
+
+    .floating-menu.visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .floating-item {
+      position: relative;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .floating-bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      flex: none;
+      background: #bdbdbd;
+      transform-origin: left center;
+      transition:
+        width .35s cubic-bezier(.22,1,.36,1),
+        height .25s ease,
+        background .25s ease;
+    }
+
+    .floating-item.active .floating-bar {
+      width: 38px;
+      height: 3px;
+      background: var(--ink);
+    }
+
+    .floating-item:hover .floating-bar,
+    .floating-item:focus-visible .floating-bar {
+      width: 48px;
+      height: 3px;
+      background: var(--ink);
+    }
+
+    .floating-label {
+      position: absolute;
+      left: 58px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-7px);
+      width: max-content;
+      padding: 5px 7px;
+      border-radius: 4px;
+      background: var(--surface);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.25;
+      white-space: nowrap;
+      color: var(--ink);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity .2s ease,
+        transform .3s cubic-bezier(.22,1,.36,1);
+    }
+
+    .floating-item:hover .floating-label,
+    .floating-item:focus-visible .floating-label {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* Footer */
+
+    .site-footer {
+      width: 100%;
+      padding: 0 52px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .site-footer-inner {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .footer-left .portfolio-label { color: #a0a0a0; }
+    .footer-links { display: flex; align-items: center; gap: 24px; }
+
+    .footer-link {
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .footer-link:hover { color: var(--ink); }
+
+    /* Responsive */
+
+    @media (max-width: 1320px) {
+      .floating-menu { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .case-main { padding: 110px 32px 100px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 46px;
+        padding: 72px 0 80px;
+      }
+
+      .project-meta {
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .meta-item { margin: 0; }
+
+      .index-row {
+        grid-template-columns: 4px 52px minmax(230px,1fr) 1fr;
+        gap: 15px;
+      }
+
+      .index-number, .index-title { font-size: 22px; }
+      .video-layout { grid-template-columns: 1fr; gap: 24px; }
+      .focus-question { min-height: 90px; }
+      .change-row { grid-template-columns: 30px 180px minmax(0,1fr); }
+      .why-yellow-row { gap: 32px; }
+      .site-footer { padding: 0 28px; }
+
+      .site-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .case-main { padding: 88px 22px 80px; }
+      .back-link-top { left: 32px; }
+      .hero { padding: 58px 0 68px; }
+      .hero-title { font-size: clamp(32px,8.8vw,56px); }
+      .hero-description { font-size: 17px; }
+      .project-meta { grid-template-columns: 1fr; }
+      .project-index, .case-section { margin-bottom: 100px; }
+
+      .index-row {
+        grid-template-columns: 4px 42px 1fr;
+        gap: 12px;
+        min-height: 72px;
+      }
+
+      .index-title, .index-number { font-size: 20px; }
+      .index-desc { display: none; }
+      .section-title { font-size: 36px; }
+
+      .contrast-layout,
+      .two-up,
+      .why-yellow-row { grid-template-columns: 1fr; }
+
+      .contrast-layout { gap: 32px; margin-top: 48px; }
+
+      .contrast-figure img,
+      .why-yellow-row:first-child .why-yellow-figure img {
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .why-yellow-row.reverse .why-yellow-figure { order: -1; }
+      .component-pair { gap: 12px; }
+      .change-row { grid-template-columns: 28px minmax(0,1fr); }
+      .change-row p { grid-column: 2; }
+      .footer-left { flex-wrap: wrap; }
+      .image-dialog-bar { padding: 12px; gap: 12px; }
+      .image-dialog-title { font-size: 11px; }
+      .image-dialog-stage { padding: 12px; }
+    }
+
+    @media (hover: none) {
+      .zoom-card::after {
+        opacity: .9;
+        transform: scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .focus-question,
+      .zoom-card,
+      .zoom-card img,
+      .zoom-card::after,
+      .floating-menu,
+      .floating-bar,
+      .floating-label,
+      .back-link-arrow { transition: none; }
+
+      .zoom-card:hover,
+      .zoom-card:focus-visible,
+      .zoom-card:hover img,
+      .zoom-card:focus-visible img { transform: none; }
+    }
+/* Subtle boards for Before / Proposed comparisons only */
+
+#focus-comparison .two-up > div,
+.additional-focus-examples .component-pair > div,
+#clarity .comparison .two-up > div {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+/* Keep labels compact */
+#focus-comparison .sample-label,
+.additional-focus-examples .sample-label,
+#clarity .comparison .sample-label {
+  margin-bottom: 16px;
+}
+
+/* Images sit naturally inside the boards */
+.additional-focus-examples .component-image-stage > img,
+.additional-focus-examples .after-window,
+#clarity .comparison .zoom-card {
+  box-shadow: none;
+}
+
+#clarity .comparison .zoom-card:hover,
+#clarity .comparison .zoom-card:focus-visible {
+  box-shadow: none;
+}
+
+/* Preserve room around the illustrated focus rings */
+#focus-comparison .button-stage {
+  min-height: 150px;
+}
+
+/* Smaller padding on narrow screens */
+@media (max-width: 700px) {
+  #focus-comparison .two-up > div,
+  .additional-focus-examples .component-pair > div,
+  #clarity .comparison .two-up > div {
+    padding: 14px;
+  }
+}
+  
+  /* Reading progress — replaces the floating section navigation */
+  .floating-menu { display: none !important; }
+  .reading-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    z-index: 10000; pointer-events: none;
+    background: transparent;
+  }
+  .reading-progress__fill {
+    width: 100%; height: 100%; background: #FCE300;
+    transform: scaleX(0); transform-origin: left center;
+    will-change: transform;
+  }
+
+
+    /* Consistent footer link icons and hover underline */
+    .footer-links .footer-link { display: inline-flex; align-items: center; gap: 4px; width: max-content; text-decoration: none; text-underline-offset: 5px; }
+    .footer-links .footer-link:hover, .footer-links .footer-link:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; }
+    .footer-links .footer-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+    @media (max-width: 480px) { .footer-links { flex-wrap: wrap; row-gap: 12px; } }
+
+  
+/* Bottom CTA — centered, with restrained spacing */
+.case-bottom-navigation {
+  padding: 32px 0 24px;
+  display: flex;
+  justify-content: center;
+}
+.more-work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--ink);
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.more-work-link svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+.more-work-link:hover svg {
+  transform: translateX(4px);
+}
+.more-work-link:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .more-work-link svg { transition: none; }
+}
+
+
+
+/* Keep copyright consistent with footer links */
+.site-footer .footer-left, .site-footer .footer-left span { color: var(--muted) !important; }
+/* Manual video playback */
+.video-intro {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.video-play-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.video-play-button:hover {
+  opacity: .8;
+}
+
+.focus-question {
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .focus-question {
+    transition: none;
+  }
+}
+.video-prompt {
+  margin-bottom: 20px;
+}
+
+.video-frame {
+  position: relative;
+}
+
+.video-frame .video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 24px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.video-frame .video-play-button[hidden] {
+  display: none;
+}
+</style>
+</head>
+
+<body class="case-study-page accessibility-page">
+  <div class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="reading-progress__fill" id="reading-progress-fill"></div></div>
+
+  <!-- Must appear before the navigation script runs -->
+  <nav
+    id="floating-menu"
+    class="floating-menu"
+    aria-label="Case study sections"
+  >
+    <a class="floating-item" href="#context" data-section="context">
+      <span class="floating-bar" aria-hidden="true"></span>
+      <span class="floating-label">Context &amp; approach</span>
+    </a>
+
+    <a class="floating-item" href="#focus" data-section="focus">
+      <span class="floating-bar" aria-hidden="true"></span>
+      <span class="floating-label">Contrast ≠ Visibility</span>
+    </a>
+
+    <a class="floating-item" href="#clarity" data-section="clarity">
+      <span class="floating-bar" aria-hidden="true"></span>
+      <span class="floating-label">Content ≠ Clarity</span>
+    </a>
+
+    <a class="floating-item" href="#reflection" data-section="reflection">
+      <span class="floating-bar" aria-hidden="true"></span>
+      <span class="floating-label">Reflection &amp; next steps</span>
+    </a>
+  </nav>
+
+  <header class="header">
+    <div class="brand">
+      <span class="brand-name">Sunghye Park</span>
+      <span class="portfolio-label">UX DESIGNER · PORTFOLIO 2026</span>
+    </div>
+
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">
+        <span class="nav-dot" aria-hidden="true"></span>
+        <span class="nav-text">Home</span>
+      </a>
+
+      <a href="work.html" class="nav-link active">
+        <span class="nav-dot" aria-hidden="true"></span>
+        <span class="nav-text">Work</span>
+      </a>
+
+      <a href="about.html" class="nav-link">
+        <span class="nav-dot" aria-hidden="true"></span>
+        <span class="nav-text">About</span>
+      </a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="mailto:snhye.park@gmail.com" class="contact-button contact-interactive" aria-label="Send email"><span class="contact-default">Get in touch</span><span class="contact-hover" aria-hidden="true"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>Send email</span></a>
+
+      <button
+        id="theme-btn"
+        class="theme-button"
+        type="button"
+        aria-label="Switch to dark mode"
+      >
+        <span class="theme-icon" aria-hidden="true">
+          <svg
+            id="sun"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="9" cy="9" r="4"
+              stroke="var(--ink)" stroke-width="1.4"/>
+            <path
+              d="M9 .5V2.5M9 15.5V17.5M17.5 9H15.5M2.5 9H.5M15.02 2.98L13.6 4.4M4.4 13.6L2.98 15.02M15.02 15.02L13.6 13.6M4.4 4.4L2.98 2.98"
+              stroke="var(--ink)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
+          </svg>
+
+          <svg
+            id="moon"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5A7.5 7.5 0 117.5 2a6 6 0 108.5 8.5Z"
+              fill="var(--ink)"
+            />
+          </svg>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main class="case-main">
+    <div class="case-container">
+
+      <section class="hero">
+        <div>
+          <a class="back-link back-link-top" href="work.html">
+            <span class="back-link-arrow" aria-hidden="true">&larr;</span>
+            Back to Work
+          </a>
+
+          <span class="eyebrow">Accessibility case study</span>
+          <h1 class="hero-title">Accessibility</h1>
+
+          <p class="hero-description">
+            Exploring how keyboard focus and the presentation of dense
+            financial information can support a clearer interaction experience.
+          </p>
+        </div>
+
+        <aside class="project-meta" aria-label="Project details">
+          <div class="meta-item">
+            <div class="meta-label">Role</div>
+            <div class="meta-value">
+              Individual evaluation · UI refinement
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Context</div>
+            <div class="meta-value">
+              Accessibility coursework 
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Output</div>
+            <div class="meta-value">
+              Accessibility review · Keyboard focus design ·
+              Cognitive accessibility before/after comparison
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Tools</div>
+            <div class="meta-value">
+              Keyboard navigation · CCA · Browser DevTools · Figma
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      
+
+      <section id="context" class="case-section">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">Context &amp; approach</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+  For this accessibility course, the brief was to take responsibility for
+  accessibility work within an organisation and recommend
+  improvements to colleagues working in design and development,
+  considering both immediate changes and long-term practice.
+  I independently chose <strong>Avanza’s public website</strong> for the review.
+  My focus was on <strong>keyboard focus visibility for keyboard users</strong>
+  and <strong>cognitive accessibility</strong>, exploring how the presentation
+  of dense financial information could reduce
+  unnecessary cognitive load.
+</p>
+        </div>
+      </section>
+
+      <section id="focus" class="case-section">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Contrast ≠ Visibility</h2>
+        </div>
+
+       
+
+<div class="video-layout">
+  <div class="video-frame">
+    <video
+      id="keyboard-video"
+      muted
+      playsinline
+      controls
+      preload="metadata"
+      aria-label="Keyboard navigation on the Avanza Zero page"
+      aria-describedby="video-prompt"
+    >
+      <source src="assets/keyboard.mp4" type="video/mp4">
+      Your browser does not support this video.
+    </video>
+
+    <button
+      id="video-play-btn"
+      class="video-play-button"
+      type="button"
+      aria-controls="keyboard-video"
+    >
+      ▶ Play video
+    </button>
+  </div>
+
+  <div id="focus-question" class="focus-question">
+    <h3>Where did the focus go?</h3>
+    <p>Can you spot it right away?</p>
+  </div>
+</div>
+
+
+
+        <div class="text-column video-observation">
+          <p class="body-text">
+            When I moved from “Fondfaktablad” to “Om erbjudandet” with the
+            keyboard, focus jumped to another part of the page. I found myself
+            pausing to locate it. The indicator existed, but it did not
+            immediately draw my attention.
+          </p>
+        </div>
+
+        <div class="contrast-layout">
+          <div class="contrast-copy">
+            <div class="sample-label">Sampled contrast ratio</div>
+            <div class="ratio">19:1</div>
+
+            <p class="body-text">
+              The keyboard focus indicator measured
+              <strong>19:1 against the white background</strong>,
+              exceeding the <strong>minimum 3:1 contrast ratio</strong>
+              required by <strong>WCAG 1.4.11 Non-text Contrast at Level AA</strong>.
+              However, sufficient contrast did not make the focus position
+              immediately noticeable during keyboard navigation.
+            </p>
+          </div>
+
+          <figure class="contrast-figure">
+            <img
+              src="assets/contrast.png"
+              alt="CCA showing a 19:1 contrast ratio between #101010 and #FFFFFF."
+              loading="lazy"
+            >
+          </figure>
+        </div>
+
+        <h3 class="subheading">My proposal for clearer keyboard focus</h3>
+
+        <div class="text-column">
+          <p class="body-text">
+            I proposed a <strong>3px dark ring</strong> with a further
+            <strong>3px yellow outer halo</strong>. The
+            <strong>thicker shape and supplementary colour</strong>
+            aim to make the current focus position easier to distinguish
+            from surrounding information.
+          </p>
+        </div>
+
+        <div id="focus-comparison" class="comparison">
+          <div class="two-up">
+            <div>
+              <div class="sample-label">Before</div>
+              <div class="button-stage">
+                <button class="buy-button baseline-ring" type="button">
+                  Köp
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="sample-label">Proposed</div>
+              <div class="button-stage">
+                <button class="buy-button proposed-ring" type="button">
+                  Köp
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="caption caption-centered">
+          Proposed focus style with a 3px dark ring and 3px yellow halo.
+        </p>
+
+        <h3 class="subheading">Why yellow?</h3>
+
+        <div class="why-yellow-sequence">
+          <div class="why-yellow-row">
+            <figure class="why-yellow-figure">
+              <img
+                src="assets/why-yellow-cca.png"
+                alt="CCA measurement showing the low contrast of yellow against a white background."
+                loading="lazy"
+              >
+            </figure>
+
+            <div>
+              <p class="body-text">
+                <strong>Yellow against white did not meet the contrast
+                threshold on its own.</strong> I used it as an
+                <strong>additional visual cue rather than the sole focus
+                indicator</strong>. The dark ring provides a distinct
+                boundary, while yellow helps differentiate the treatment
+                from the many dark numbers and labels on the page.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-yellow-row reverse">
+            <div>
+              <p class="body-text">
+                The proposal uses <strong>both colour and thickness</strong>.
+                A grayscale comparison illustrates that the dark shape remains,
+                but does not replace testing with users or checking each
+                component’s adjacent colours.
+              </p>
+            </div>
+
+            <figure class="why-yellow-figure">
+              <img
+                src="assets/why-yellow-2.png"
+                alt="Grayscale comparison showing the thicker dark focus boundary."
+                loading="lazy"
+              >
+            </figure>
+          </div>
+        </div>
+
+        <div class="additional-focus-examples">
+          <h4 class="controls-heading">Focus on coloured controls</h4>
+
+          <div class="component-comparison">
+            <div class="component-pair">
+              <div>
+                <div class="sample-label">Before</div>
+                <div class="component-image-stage">
+                  <img
+                    src="assets/Chart-selection-control-before.png"
+                    alt="Original chart selection control with its thin focus outline."
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+
+              <div>
+                <div class="sample-label">Proposed</div>
+                <div class="component-image-stage">
+                  <div class="after-window">
+                    <img
+                      src="assets/Chart-selection-control-after.png"
+                      alt="Proposed chart selection control with a dark ring and yellow outer halo."
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="component-comparison">
+            <div class="component-pair">
+              <div>
+                <div class="sample-label">Before</div>
+                <div class="component-image-stage">
+                  <img
+                    src="assets/Transaction-display-toggle-before.png"
+                    alt="Original transaction display toggle with its thin focus outline."
+                    loading="lazy"
+                  >
+                </div>
+              </div>
+
+              <div>
+                <div class="sample-label">Proposed</div>
+                <div class="component-image-stage">
+                  <div class="after-window">
+                    <img
+                      src="assets/Transaction-display-toggle-after.png"
+                      alt="Proposed green transaction toggle with a dark ring and yellow outer halo."
+                      loading="lazy"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="clarity" class="case-section">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Content ≠ Clarity</h2>
+        </div>
+
+        
+
+        <div class="text-column">
+          <p class="body-text">
+            On a stock detail page, I reviewed the company information, reports,
+            trading figures, and broker statistics below the chart. The data was
+            useful, but I found it difficult to quickly match values with their labels.
+          </p>
+
+          <p class="body-text">
+            From a <strong>cognitive accessibility</strong> perspective,
+            I considered the <strong>visual search effort</strong> needed to
+            find and interpret a value. Competing visual cues and inconsistent
+            emphasis may increase <strong>extraneous cognitive load</strong>,
+            making users spend more effort working out the layout before they
+            can understand the financial data.
+          </p>
+        </div>
+
+        <div class="comparison">
+          <div class="two-up">
+            <div>
+              <div class="sample-label">Before</div>
+
+              <button
+                class="zoom-card"
+                type="button"
+                data-title="Stock detail page — Before"
+                aria-label="Enlarge the original stock detail page"
+                aria-haspopup="dialog"
+              >
+                <span class="zoom-card-content">
+                  <img
+                    src="assets/cognitive-before.png"
+                    alt="Stock detail page before refinement."
+                    loading="lazy"
+                  >
+                </span>
+              </button>
+            </div>
+
+            <div>
+              <div class="sample-label">Proposed</div>
+
+              <button
+                class="zoom-card"
+                type="button"
+                data-title="Stock detail page — Proposed"
+                aria-label="Enlarge the proposed stock detail page"
+                aria-haspopup="dialog"
+              >
+                <span class="zoom-card-content">
+                  <img
+                    src="assets/cognitive-after.png"
+                    alt="Proposed stock detail page with clearer information grouping and typography."
+                    loading="lazy"
+                  >
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <p class="caption">
+            Original and proposed layouts. Financial figures may vary.
+          </p>
+        </div>
+
+        <div class="change-list">
+          <div class="change-row">
+            <span class="change-number">01</span>
+            <h3>Simpler company information and removal of unnecessary icons</h3>
+            <p>
+              Kept a short company introduction with “Visa mer” for more detail,
+              and removed decorative icons from the reports.
+            </p>
+          </div>
+
+          <div class="change-row">
+            <span class="change-number">02</span>
+            <h3>Clearer financial figures</h3>
+            <p>
+              Separated traded amount, volume, and average price, with a clearer
+              visual hierarchy between labels, values, and units.
+            </p>
+          </div>
+
+          <div class="change-row">
+            <span class="change-number">03</span>
+            <h3>Consistent typography</h3>
+            <p>
+              Made font sizes and weights consistent across the labels and
+              figures in the broker statistics.
+            </p>
+          </div>
+
+          <div class="change-row">
+            <span class="change-number">04</span>
+            <h3>Clearer link text</h3>
+            <p>
+              Changed “Se alla” to “Se alla transaktioner” so users know
+              what they will see before clicking.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text" style="margin-top: 30px;">
+            These proposals address processing demands without simplifying
+            the underlying financial content. Reduced cognitive load is an
+            intended benefit, not a measured outcome.
+          </p>
+        </div>
+      </section>
+
+      <section id="reflection" class="case-section">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Reflection &amp; next steps</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            Meeting accessibility standards and using a page can feel different.
+            The focus indicator passed the contrast check, but I still struggled
+            to spot it while navigating with the keyboard. Even if an improvement
+            is not essential for most users, I think it deserves attention before
+            someone has to report a problem. Accessibility needs ongoing care.
+          </p>
+
+          <p class="body-text">
+            Avanza’s
+            <a
+              href="https://www.avanza.se/kundservice/tillganglighet-pa-avanza.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >public accessibility information</a>
+            provides context for the review. That information does not tell me
+            how often they test internally, but I would recommend making
+            accessibility testing with users a regular part of product development.
+          </p>
+        </div>
+
+        <p class="project-note">
+          This independent accessibility case study was completed as part of
+          my coursework, without affiliation with or endorsement by Avanza.
+        </p>
+      </section>
+      <!-- Explore more projects -->
+      <div class="case-bottom-navigation">
+        <a class="more-work-link" href="work.html">
+          <span>More projects</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M5 12h14M12 5l7 7-7 7"
+      stroke="currentColor"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-left">
+        <span>© 2026 Sunghye Park</span>
+      </div>
+
+      
+      <nav class="footer-links" aria-label="Contact links">
+        <a class="footer-link" href="mailto:snhye.park@gmail.com">Email</a>
+        <a class="footer-link" href="https://www.linkedin.com/in/sunghyepark-ux" target="_blank" rel="noopener noreferrer">LinkedIn <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="footer-link" href="Sunghye_Park_CV_UX design.pdf" target="_blank" rel="noopener noreferrer">CV <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog
+    id="image-dialog"
+    class="image-dialog"
+    aria-labelledby="image-dialog-title"
+  >
+    <div class="image-dialog-bar">
+      <span id="image-dialog-title" class="image-dialog-title"></span>
+
+      <div class="image-dialog-actions">
+        <button
+          id="image-dialog-toggle"
+          class="image-dialog-button"
+          type="button"
+        >Actual size</button>
+
+        <button
+          id="image-dialog-close"
+          class="image-dialog-button"
+          type="button"
+        >Close</button>
+      </div>
+    </div>
+
+    <div
+      id="image-dialog-stage"
+      class="image-dialog-stage"
+      tabindex="0"
+      aria-label="Image viewer. Scroll to explore the original size image."
+    >
+      <div class="image-dialog-canvas">
+        <img id="image-dialog-img" class="image-dialog-img" alt="">
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    /* Theme */
+
+    var themeBtn = document.getElementById("theme-btn");
+    var sun = document.getElementById("sun");
+    var moon = document.getElementById("moon");
+    var savedTheme;
+
+    try {
+      savedTheme = localStorage.getItem("theme");
+    } catch (error) {}
+
+    function applyTheme(isDark) {
+      document.body.classList.toggle("dark", isDark);
+      sun.style.opacity = isDark ? 0 : 1;
+      moon.style.opacity = isDark ? 1 : 0;
+      themeBtn.setAttribute(
+        "aria-label",
+        isDark ? "Switch to light mode" : "Switch to dark mode"
+      );
+    }
+
+    applyTheme(savedTheme === "dark");
+
+    themeBtn.addEventListener("click", function () {
+      var isDark = !document.body.classList.contains("dark");
+      applyTheme(isDark);
+
+      try {
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      } catch (error) {}
+    });
+
+    /* Video — manual playback */
+
+var video = document.getElementById("keyboard-video");
+var question = document.getElementById("focus-question");
+var playButton = document.getElementById("video-play-btn");
+
+var focusMoment = 4.65;
+var questionDelay = 580;
+var stoppedThisCycle = false;
+var questionTimer;
+
+/* Used by the existing image viewer */
+var viewerIsOpen = false;
+var resumeAfterViewer = false;
+
+video.autoplay = false;
+video.loop = false;
+
+function resetQuestion() {
+  clearTimeout(questionTimer);
+  question.classList.remove("visible");
+  stoppedThisCycle = false;
+}
+
+function updatePlayButton() {
+  playButton.hidden = !video.paused && !video.ended;
+
+  if (video.ended) {
+    playButton.textContent = "↻ Replay video";
+  } else if (video.currentTime > 0) {
+    playButton.textContent = "▶ Continue video";
+  } else {
+    playButton.textContent = "▶ Play video";
+  }
+}
+
+function pauseInternally() {
+  video.pause();
+}
+
+/* Closing the image viewer never restarts the video automatically */
+function updatePlayback() {
+  updatePlayButton();
+}
+
+playButton.addEventListener("click", function () {
+  if (!video.paused) {
+    video.pause();
+    return;
+  }
+
+  if (video.ended) {
+    resetQuestion();
+    video.currentTime = 0;
+  }
+
+  video.play().catch(function () {
+    playButton.textContent = "Try playing again";
+  });
+});
+
+video.addEventListener("timeupdate", function () {
+  if (
+    !stoppedThisCycle &&
+    !video.paused &&
+    video.currentTime >= focusMoment
+  ) {
+    stoppedThisCycle = true;
+    video.pause();
+    video.currentTime = focusMoment;
+
+    clearTimeout(questionTimer);
+    questionTimer = setTimeout(function () {
+      question.classList.add("visible");
+    }, questionDelay);
+  }
+});
+
+video.addEventListener("seeking", function () {
+  if (video.currentTime < .25) {
+    resetQuestion();
+  }
+
+  updatePlayButton();
+});
+
+video.addEventListener("play", updatePlayButton);
+video.addEventListener("pause", updatePlayButton);
+video.addEventListener("ended", updatePlayButton);
+
+updatePlayButton();
+
+    /* Image viewer */
+
+    (function () {
+      var dialog = document.getElementById("image-dialog");
+      var title = document.getElementById("image-dialog-title");
+      var image = document.getElementById("image-dialog-img");
+      var stage = document.getElementById("image-dialog-stage");
+      var toggle = document.getElementById("image-dialog-toggle");
+      var close = document.getElementById("image-dialog-close");
+      var opener;
+      var oldOverflow = "";
+      var canZoom = false;
+      var dragging = false;
+      var dragged = false;
+      var startX = 0;
+      var startY = 0;
+      var startScrollX = 0;
+      var startScrollY = 0;
+
+      function setActual(enabled) {
+        dialog.classList.toggle("actual", enabled);
+        toggle.textContent = enabled ? "Fit to screen" : "Actual size";
+        toggle.setAttribute("aria-pressed", String(enabled));
+        stage.scrollLeft = 0;
+        stage.scrollTop = 0;
+      }
+
+      function checkZoom() {
+        if (!dialog.open || !image.naturalWidth) return;
+
+        var padding =
+          parseFloat(getComputedStyle(stage).paddingLeft) * 2;
+
+        canZoom =
+          image.naturalWidth > stage.clientWidth - padding ||
+          image.naturalHeight > stage.clientHeight - padding;
+
+        toggle.hidden = !canZoom;
+        dialog.classList.toggle("no-zoom", !canZoom);
+
+        if (!canZoom) setActual(false);
+      }
+
+      document.querySelectorAll("#clarity .comparison .zoom-card")
+        .forEach(function (button) {
+          button.addEventListener("click", function () {
+            opener = button;
+            var source = button.querySelector("img");
+
+            title.textContent = button.dataset.title;
+            image.alt = source.alt;
+            image.src = source.currentSrc || source.src;
+
+            setActual(false);
+            toggle.hidden = true;
+
+            oldOverflow = document.documentElement.style.overflow;
+            document.documentElement.style.overflow = "hidden";
+
+            resumeAfterViewer = !video.paused;
+            viewerIsOpen = true;
+            pauseInternally();
+
+            dialog.showModal();
+            close.focus();
+
+            if (image.complete) checkZoom();
+          });
+        });
+
+      image.addEventListener("load", checkZoom);
+
+      image.addEventListener("error", function () {
+        title.textContent = "The image could not be loaded.";
+        toggle.hidden = true;
+      });
+
+      toggle.addEventListener("click", function () {
+        if (canZoom) {
+          setActual(!dialog.classList.contains("actual"));
+        }
+      });
+
+      close.addEventListener("click", function () {
+        dialog.close();
+      });
+
+      dialog.addEventListener("close", function () {
+        dragging = false;
+        stage.classList.remove("dragging");
+        document.documentElement.style.overflow = oldOverflow;
+        viewerIsOpen = false;
+
+        if (resumeAfterViewer) updatePlayback();
+        if (opener) opener.focus({ preventScroll: true });
+      });
+
+      stage.addEventListener("click", function (event) {
+        if (dragged) {
+          dragged = false;
+          return;
+        }
+
+        if (event.target === image) {
+          if (canZoom) {
+            setActual(!dialog.classList.contains("actual"));
+          }
+          return;
+        }
+
+        dialog.close();
+      });
+
+      stage.addEventListener("mousedown", function (event) {
+        if (
+          !dialog.classList.contains("actual") ||
+          event.button !== 0 ||
+          event.target !== image
+        ) return;
+
+        dragging = true;
+        dragged = false;
+        startX = event.clientX;
+        startY = event.clientY;
+        startScrollX = stage.scrollLeft;
+        startScrollY = stage.scrollTop;
+        stage.classList.add("dragging");
+        event.preventDefault();
+      });
+
+      window.addEventListener("mousemove", function (event) {
+        if (!dragging) return;
+
+        var dx = event.clientX - startX;
+        var dy = event.clientY - startY;
+
+        if (Math.abs(dx) + Math.abs(dy) > 4) dragged = true;
+
+        stage.scrollLeft = startScrollX - dx;
+        stage.scrollTop = startScrollY - dy;
+      });
+
+      window.addEventListener("mouseup", function () {
+        dragging = false;
+        stage.classList.remove("dragging");
+      });
+
+      window.addEventListener("resize", checkZoom);
+    })();
+
+    /* Floating section navigation */
+
+    (function () {
+      var menu = document.getElementById("floating-menu");
+      var index = document.querySelector(".project-index");
+
+      if (!menu) return;
+
+      var items = menu.querySelectorAll(".floating-item");
+      var sections = Array.from(items)
+        .map(function (item) {
+          return document.getElementById(item.dataset.section);
+        })
+        .filter(Boolean);
+
+      function updateMenu() {
+        var start = index || sections[0];
+        if (!start) return;
+
+        menu.classList.toggle(
+          "visible",
+          start.getBoundingClientRect().top <
+            window.innerHeight * .58
+        );
+
+        var currentSection = null;
+
+        sections.forEach(function (section) {
+          if (section.getBoundingClientRect().top <= 155) {
+            currentSection = section.id;
+          }
+        });
+
+        items.forEach(function (item) {
+          var active = item.dataset.section === currentSection;
+          item.classList.toggle("active", active);
+
+          if (active) {
+            item.setAttribute("aria-current", "location");
+          } else {
+            item.removeAttribute("aria-current");
+          }
+        });
+      }
+
+      var scheduled = false;
+
+      window.addEventListener("scroll", function () {
+        if (scheduled) return;
+        scheduled = true;
+
+        requestAnimationFrame(function () {
+          updateMenu();
+          scheduled = false;
+        });
+      }, { passive: true });
+
+      window.addEventListener("resize", updateMenu);
+      window.addEventListener("load", updateMenu);
+      updateMenu();
+    })();
+  </script>
+
+<script>
+/* Reading progress: percentage of the document scrolled */
+(function () {
+  var fill = document.getElementById('reading-progress-fill');
+  if (!fill) return;
+  var ticking = false;
+  function updateProgress() {
+    var doc = document.documentElement;
+    var maxScroll = Math.max(0, doc.scrollHeight - doc.clientHeight);
+    var ratio = maxScroll ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 1;
+    fill.style.transform = 'scaleX(' + ratio + ')';
+    fill.parentElement.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+    ticking = false;
+  }
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateProgress);
+    }
+  }
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  window.addEventListener('load', updateProgress);
+  updateProgress();
+})();
+</script>
+</body>
+</html>
