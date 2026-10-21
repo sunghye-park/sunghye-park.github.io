@@ -1,0 +1,141 @@
+/* Sunghye Park Portfolio — shared design system */
+* { box-sizing: border-box; }
+html { margin: 0; width: 100%; min-height: 100%; overflow-y: scroll; }
+body { margin: 0; width: 100%; min-height: 100%; font-family: 'Inter', system-ui, sans-serif; }
+
+:root {
+  --surface: #ffffff; --surface-soft: #f7f7f5; --ink: #000000;
+  --text: #333333; --text-secondary: #5c5c5c; --muted: #777777;
+  --line: #e6e6e6; --yellow: #FCE300;
+  --header-height: 110px; --header-padding: 52px; --content-padding: 68px;
+}
+body.dark, #card.dark {
+  --surface: #0f0f0f; --surface-soft: #171717; --ink: #f5f5f5;
+  --text: #d0d0d0; --text-secondary: #b5b5b5; --muted: #999999; --line: #2a2a2a;
+}
+
+.header {
+  width: 100%; height: var(--header-height) !important; flex: 0 0 var(--header-height) !important;
+  display: grid !important; grid-template-columns: 1fr auto 1fr !important; align-items: center !important;
+  padding: 0 var(--header-padding) !important; box-sizing: border-box !important;
+  background: var(--surface); border: 0 !important;
+}
+.brand, .header-left { justify-self: start; display: flex; align-items: center; gap: 10px; }
+.brand-name { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 600; color: var(--ink); }
+.portfolio-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: .06em; color: #a0a0a0; transform: translateY(2px); }
+.header-nav { justify-self: center; display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: 999px; background: #111; }
+.nav-link { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; text-decoration: none; background: transparent; }
+.nav-link.active { background: #2a2a2a; }
+.nav-dot { width: 6px; height: 6px; flex: none; border-radius: 50%; background: var(--yellow); opacity: 0; }
+.nav-link.active .nav-dot { opacity: 1; }
+.nav-text { font-size: 13px; color: #fff; }
+.header-actions, .header-right { justify-self: end; display: flex; align-items: center; gap: 14px; }
+.contact-button, .contact-btn { display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; border-radius: 999px; background: var(--yellow); color: #000; font: 600 15px 'Inter', sans-serif; text-decoration: none; }
+.theme-button, #theme-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer; }
+.theme-icon, .theme-icon-wrap { position: relative; width: 18px; height: 18px; }
+#sun, #moon { position: absolute; inset: 0; transition: opacity .2s ease; }
+
+.case-study-page .header { position: relative; }
+.case-study-page .header::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line); pointer-events: none; }
+.case-study-page.strax-page .header { position: fixed; top: 0; left: 0; z-index: 1000; }
+.case-study-page.strax-page .case-main { padding-top: var(--header-height) !important; }
+
+@media (max-width: 900px) { .header { padding-left: 28px !important; padding-right: 28px !important; } }
+@media (max-width: 700px) {
+  :root { --header-height: 88px; }
+  .header { grid-template-columns: 1fr auto !important; padding-left: 22px !important; padding-right: 22px !important; }
+  .header-nav, .contact-button, .contact-btn { display: none !important; }
+}
+
+
+/* Shared header email button: accessible, fixed-width label transition */
+.contact-interactive { position:relative; display:inline-grid; place-items:center; min-width:150px; min-height:45px; box-sizing:border-box; overflow:hidden; white-space:nowrap; transition:transform 150ms ease; }
+.contact-interactive > span { grid-area:1 / 1; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:opacity 230ms ease, transform 230ms ease; }
+.contact-interactive .contact-default { opacity:1; transform:translateY(0); }
+.contact-interactive .contact-hover { opacity:0; transform:translateY(7px); pointer-events:none; }
+@media (hover:hover) {
+  .contact-interactive:hover .contact-default { opacity:0; transform:translateY(-7px); }
+  .contact-interactive:hover .contact-hover { opacity:1; transform:translateY(0); }
+}
+.contact-interactive:focus-visible .contact-default { opacity:0; transform:translateY(-7px); }
+.contact-interactive:focus-visible .contact-hover { opacity:1; transform:translateY(0); }
+.contact-interactive:active { transform:scale(.96); }
+@media (prefers-reduced-motion:reduce) { .contact-interactive, .contact-interactive > span { transition:none !important; } }
+/* Match Strax hero spacing to the A11y case study */
+@media (min-width: 901px) {
+  .case-study-page.strax-page .case-main {
+    padding-top: calc(var(--header-height) + 111px) !important;
+  }
+
+  .case-study-page.strax-page .hero {
+    padding-top: 92px;
+    padding-bottom: 100px;
+  }
+
+  .case-study-page.strax-page .hero > div:first-child {
+    padding-top: 36px;
+  }
+}
+@media (min-width: 701px) and (max-width: 900px) {
+  .case-study-page.strax-page .case-main {
+    padding-top: calc(var(--header-height) + 110px) !important;
+  }
+
+  .case-study-page.strax-page .hero {
+    padding: 72px 0 80px;
+  }
+
+  .case-study-page.strax-page .hero > div:first-child {
+    padding-top: 36px;
+  }
+}
+
+@media (max-width: 700px) {
+  .case-study-page.strax-page .case-main {
+    padding-top: calc(var(--header-height) + 88px) !important;
+  }
+
+  .case-study-page.strax-page .hero {
+    padding: 58px 0 68px;
+  }
+
+  .case-study-page.strax-page .hero > div:first-child {
+    padding-top: 36px;
+  }
+}
+.case-study-page.strax-page .hero-title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(56px, 6.2vw, 84px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .case-study-page.strax-page .hero-title {
+    font-size: clamp(32px, 8.8vw, 56px);
+  }
+}
+/* Move all three case-study hero sections up by 32px */
+@media (min-width: 901px) {
+  .case-study-page .hero,
+  .case-study-page.strax-page .hero {
+    padding-top: 60px;
+  }
+}
+.accessibility-page .detail-heading {
+  margin: 32px 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+/* Shared header contact button width */
+.header .contact-interactive {
+  width: 150px !important;
+  min-width: 150px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  padding: 0 12px !important;
+  box-sizing: border-box;
+}

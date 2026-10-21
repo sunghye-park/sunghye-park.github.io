@@ -1,0 +1,3212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Cancerdagboken — Sunghye Park</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<link rel="stylesheet" href="css/global.css">
+<style>
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+
+    font-family: 'Inter', system-ui, sans-serif;
+
+    --surface: #ffffff;
+    --surface-soft: #f7f7f5;
+    --ink: #000000;
+    --text: #333333;
+    --muted: #777777;
+    --line: #e6e6e6;
+
+    --yellow: #FCE300;
+
+    background: var(--surface);
+    color: var(--ink);
+
+    transition:
+      background .25s ease,
+      color .25s ease;
+  }
+
+  body.dark {
+    --surface: #0f0f0f;
+    --surface-soft: #171717;
+    --ink: #f5f5f5;
+    --text: #d0d0d0;
+    --muted: #999999;
+    --line: #2a2a2a;
+  }
+
+  a {
+    color: inherit;
+  }
+
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 111px;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+
+    padding: 0 52px;
+
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+
+    transition:
+      background .25s ease,
+      border-color .25s ease;
+  }
+
+  .header-left {
+    justify-self: start;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+      text-decoration: none;
+  cursor: pointer;
+  }
+
+  .portfolio-label {
+    font-size: 11px;
+    font-weight: 500;
+
+    letter-spacing: 0.06em;
+    color: #a0a0a0;
+  }
+
+  .header-nav {
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    padding: 6px;
+
+    border-radius: 999px;
+    background: #111111;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+    padding: 8px 16px;
+
+    border-radius: 999px;
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    background: #2a2a2a;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    flex: none;
+
+    border-radius: 50%;
+    background: #FCE300;
+
+    opacity: 0;
+  }
+
+  .nav-link.active .nav-dot {
+    opacity: 1;
+  }
+
+  .nav-text {
+    font-size: 13px;
+    color: #ffffff;
+  }
+
+  .header-right {
+    justify-self: end;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 22px;
+
+    border-radius: 999px;
+
+    background: #FCE300;
+    color: #000000;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+  }
+
+  #theme-btn {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .theme-icon-wrap {
+    position: relative;
+    width: 18px;
+    height: 18px;
+  }
+
+  #sun,
+  #moon {
+    position: absolute;
+    inset: 0;
+
+    transition: opacity .2s ease;
+  }
+
+  #moon {
+    opacity: 0;
+  }
+
+
+  /* =========================================================
+     MAIN
+  ========================================================= */
+
+  .case-main {
+    width: 100%;
+
+    padding:
+      111px
+      68px
+      140px;
+  }
+
+  .case-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+
+  /* =========================================================
+     HERO
+  ========================================================= */
+
+  .hero {
+    display: grid;
+
+    grid-template-columns:
+      minmax(0, 1.55fr)
+      minmax(280px, .7fr);
+
+    gap: 100px;
+
+    align-items: start;
+
+    padding:
+      92px
+      0
+      100px;
+  }
+
+  .hero > div:first-child {
+    padding-top: 36px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+
+    margin-bottom: 24px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--muted);
+  }
+
+  .hero-title {
+    margin: 0 0 26px;
+
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+
+    font-size: clamp(56px, 6.2vw, 84px);
+    line-height: .9;
+    letter-spacing: -.01em;
+
+    color: var(--ink);
+
+    text-transform: uppercase;
+  }
+
+  .hero-description {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-size: 18px;
+    line-height: 1.65;
+
+    color: var(--text);
+  }
+
+  .project-meta {
+    padding-top: 40px;
+  }
+
+  .meta-item {
+    margin-bottom: 28px;
+  }
+
+  .meta-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .meta-label {
+    margin-bottom: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .09em;
+    text-transform: uppercase;
+
+    color: var(--muted);
+  }
+
+  .meta-value {
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: var(--text);
+  }
+
+
+  /* =========================================================
+     PROJECT INDEX
+  ========================================================= */
+
+  .project-index {
+    margin-bottom: 150px;
+
+    padding: 26px 0 20px;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .index-label {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--muted);
+  }
+
+  .index-row {
+    display: grid;
+
+    grid-template-columns:
+      4px
+      62px
+      minmax(300px, .95fr)
+      1fr;
+
+    column-gap: 20px;
+
+    align-items: center;
+
+    min-height: 70px;
+
+    text-decoration: none;
+
+    transition: background .18s ease;
+  }
+
+  .index-row:hover {
+    background: var(--surface-soft);
+  }
+
+  .index-bar {
+    width: 4px;
+    height: 28px;
+
+    align-self: center;
+
+    background: transparent;
+
+    transition: background .18s ease;
+  }
+
+  .index-row:hover .index-bar {
+    background: var(--yellow);
+  }
+
+  .index-number {
+    font-size: 28px;
+    font-weight: 600;
+
+    line-height: 1;
+    letter-spacing: -.03em;
+
+    color: #c8c8c8;
+
+    transition: color .18s ease;
+  }
+
+  .index-row:hover .index-number {
+    color: var(--ink);
+  }
+
+  .index-title {
+    font-size: 26px;
+    font-weight: 600;
+
+    line-height: 1.08;
+    letter-spacing: -.025em;
+
+    color: var(--ink);
+  }
+
+  .index-desc {
+    max-width: 430px;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    color: var(--muted);
+  }
+
+
+  /* =========================================================
+     SECTIONS
+  ========================================================= */
+
+  .case-section {
+    margin-bottom: 150px;
+    scroll-margin-top: 155px;
+  }
+
+  .section-header {
+    margin-bottom: 42px;
+  }
+
+  .section-number {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: var(--muted);
+  }
+
+  .section-title {
+    max-width: 820px;
+
+    margin: 0;
+
+    font-size: 44px;
+    font-weight: 600;
+
+    line-height: 1.04;
+    letter-spacing: -.03em;
+
+    color: var(--ink);
+  }
+
+  .text-column {
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .body-text {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.75;
+
+    color: var(--text);
+  }
+
+  .body-text strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .body-text + .body-text {
+    margin-top: 18px;
+  }
+
+  .constraint {
+    max-width: 720px;
+
+    margin-top: 30px;
+
+    padding: 20px 22px;
+
+    border-radius: 10px;
+
+    background: var(--surface-soft);
+  }
+
+  .constraint-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .08em;
+    text-transform: uppercase;
+
+    color: var(--muted);
+  }
+
+  .constraint-text {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    color: var(--text);
+  }
+
+  .wide-visual {
+    width: 100%;
+
+    margin-top: 48px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--line);
+    background: var(--surface-soft);
+
+    min-height: 320px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wide-visual img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+  .visual-placeholder {
+    padding: 40px;
+
+    font-size: 12px;
+    line-height: 1.6;
+    text-align: center;
+
+    color: var(--muted);
+  }
+
+  .visual-caption {
+    margin: 12px 0 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+
+    color: var(--muted);
+  }
+
+
+  /* ZOOM FIGURE (click or tap to enlarge) */
+
+  .zoom-figure {
+    margin: 48px 0 0;
+  }
+
+  .zoom-figure + .zoom-figure {
+    margin-top: 40px;
+  }
+
+  .zoom-card {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    padding: 0;
+
+    overflow: hidden;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+
+    -webkit-appearance: none;
+    appearance: none;
+
+    font: inherit;
+    color: inherit;
+    text-align: left;
+
+    cursor: zoom-in;
+  }
+
+  .zoom-card img {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    height: auto;
+
+    object-fit: cover;
+    background: var(--surface-soft);
+  }
+
+  /* trims the white margin that Miro adds around an exported board.
+     Raise 1.12 to crop in more; change the 80% to move the focus point. */
+
+  .zoom-card img.crop-in {
+    transform: scale(1.12);
+    transform-origin: 50% 80%;
+  }
+
+  .zoom-card:hover img.crop-in,
+  .zoom-card:focus-visible img.crop-in {
+    transform: scale(1.16);
+  }
+
+  .zoom-card img.fit-top {
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .zoom-card:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .zoom-card {
+    transition:
+      transform .28s cubic-bezier(.22, 1, .36, 1),
+      box-shadow .28s ease,
+      border-color .2s ease;
+  }
+
+  .zoom-card img {
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  /* magnifier badge: tells people the image is clickable */
+
+  .zoom-card::after {
+    content: "";
+
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+    background:
+      var(--surface)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5M11 8v6M8 11h6'/%3E%3C/svg%3E")
+      center / 18px 18px no-repeat;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+
+    opacity: 0;
+    transform: scale(.85);
+
+    transition:
+      opacity .22s ease,
+      transform .28s cubic-bezier(.22, 1, .36, 1);
+
+    pointer-events: none;
+  }
+
+  .zoom-card:hover,
+  .zoom-card:focus-visible {
+    transform: translateY(-4px);
+
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .14);
+  }
+
+  .zoom-card:hover img,
+  .zoom-card:focus-visible img {
+    transform: scale(1.035);
+  }
+
+  .zoom-card:hover::after,
+  .zoom-card:focus-visible::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* touch screens have no hover, so keep the badge visible */
+
+  @media (hover: none) {
+    .zoom-card::after {
+      opacity: .9;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .zoom-card,
+    .zoom-card img,
+    .zoom-card::after {
+      transition: none;
+    }
+
+    .zoom-card:hover,
+    .zoom-card:focus-visible,
+    .zoom-card:hover img {
+      transform: none;
+    }
+  }
+
+
+  /* LIGHTBOX */
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: none;
+    flex-direction: column;
+
+    background: #0a0a0a;
+
+    overscroll-behavior: contain;
+    touch-action: none;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox-bar {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+
+    padding: 14px 20px;
+  }
+
+  .lightbox-title {
+    min-width: 0;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 13px;
+    color: #d0d0d0;
+  }
+
+  .lightbox-actions {
+    flex: none;
+
+    display: flex;
+    gap: 8px;
+  }
+
+  .lightbox-btn {
+    padding: 8px 16px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    background: transparent;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #ffffff;
+
+    cursor: pointer;
+  }
+
+  .lightbox-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .lightbox-btn:focus-visible,
+  .lightbox-stage:focus-visible {
+    outline: 2px solid #FCE300;
+    outline-offset: 2px;
+  }
+
+  .lightbox-btn[hidden] {
+    display: none;
+  }
+
+  .lightbox-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+
+    display: flex;
+
+    padding: 0 20px 20px;
+
+    overflow: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y pinch-zoom;
+  }
+
+  .lightbox-img {
+    display: block;
+    margin: auto;
+
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+    border-radius: 6px;
+
+    cursor: zoom-in;
+  }
+
+  .lightbox.no-zoom .lightbox-img {
+    cursor: default;
+  }
+
+  .lightbox.actual .lightbox-img {
+    max-width: none;
+    max-height: none;
+
+    cursor: grab;
+  }
+
+  .lightbox-stage.panning .lightbox-img {
+    cursor: grabbing;
+  }
+
+
+  /* PARTICIPANTS */
+
+  .participants-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 68px;
+  }
+
+  .participants-layout .text-column {
+    flex: 1;
+  }
+
+  .participant-stats {
+    flex: 0 0 300px;
+  }
+
+  .participant-stat {
+    display: grid;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .participant-stat:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .participant-number {
+    font-family: 'Anton', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .participant-label {
+    margin: 2px 0 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .participant-desc {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .participant-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .participant-person {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 23px;
+    color: var(--muted);
+  }
+
+  /* Head */
+  .participant-person::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border: 1.4px solid currentColor;
+    border-radius: 50%;
+  }
+
+  /* Shoulders */
+  .participant-person::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    width: 12px;
+    height: 10px;
+    border: 1.4px solid currentColor;
+    border-bottom: 0;
+    border-radius: 9px 9px 0 0;
+  }
+
+  /* Hide elements only when JavaScript is running */
+  .participant-stats.js-participants .participant-number,
+  .participant-stats.js-participants .participant-person {
+    opacity: 0;
+    transform: translateY(9px);
+    transition: opacity 230ms ease-out, transform 230ms ease-out;
+  }
+
+  .participant-stats.js-participants .is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    .participants-layout {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .participant-stats {
+      flex: none;
+      width: 100%;
+      max-width: 360px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .participant-stats.js-participants .participant-number,
+    .participant-stats.js-participants .participant-person {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+
+  /* TAG / CHIP ROW (synthesis coding categories) */
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 24px;
+  }
+
+  .tag {
+    padding: 8px 16px;
+
+    border: 1px solid var(--line);
+    border-radius: 999px;
+
+    font-size: 12px;
+    color: var(--text);
+
+    background: var(--surface);
+  }
+
+  .tag.tag-highlight {
+    border: none;
+    background: var(--yellow);
+    color: #000000;
+  }
+
+
+  /* PULL STATS (Key Findings — additional survey evidence) */
+
+  .pull-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    margin-top: 24px;
+  }
+
+  .pull-stats.single {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+
+  .pull-stat {
+    padding: 24px;
+    border: 1px solid var(--line);
+  }
+
+  .pull-stat.highlight {
+    border-top: 4px solid var(--yellow);
+  }
+
+  .pull-stat-number {
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    line-height: .9;
+
+    color: var(--ink);
+  }
+
+  .pull-stat-desc {
+    margin-top: 10px;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .pull-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+
+  /* SURVEY BAR CHARTS (Key Findings) */
+
+  .chart-block {
+    margin-top: 40px;
+
+    padding: 32px;
+
+    border: 1px solid var(--line);
+  }
+
+  .chart-block + .chart-block {
+    margin-top: 24px;
+  }
+
+  .chart-title {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: var(--ink);
+  }
+
+  .chart-sub {
+    margin-top: 4px;
+    margin-bottom: 24px;
+
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 240px 1fr 76px;
+
+    align-items: center;
+    gap: 14px;
+
+    padding: 8px 0;
+  }
+
+  .bar-label {
+    font-size: 13px;
+    line-height: 1.4;
+
+    color: var(--text);
+  }
+
+  .bar-track {
+    height: 10px;
+
+    background: var(--surface-soft);
+  }
+
+  .bar-fill {
+    height: 100%;
+
+    background: var(--ink);
+  }
+
+  .bar-fill.highlight {
+    background: var(--yellow);
+  }
+
+  .bar-value {
+    font-size: 12px;
+
+    color: var(--muted);
+    text-align: right;
+
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 900px) {
+    .bar-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .bar-value {
+      text-align: left;
+    }
+  }
+
+
+  .synthesis-visuals {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: start;
+
+    margin-top: 48px;
+  }
+
+  .synthesis-visuals .zoom-figure {
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    .synthesis-visuals {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .survey-figure {
+    max-width: 720px;
+  }
+
+  /* BOARD ZOOM (magnify lens on hover) */
+
+  .board-zoom {
+    position: relative;
+    width: 100%;
+
+    margin-top: 48px;
+
+    border: 1px solid var(--line);
+    overflow: hidden;
+
+    cursor: crosshair;
+  }
+
+  .board-zoom-img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+  .board-zoom-lens {
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+    border: 2px solid var(--ink);
+
+    background-repeat: no-repeat;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+
+    pointer-events: none;
+    opacity: 0;
+
+    transition: opacity .15s ease;
+  }
+
+  .board-zoom.active .board-zoom-lens {
+    opacity: 1;
+  }
+
+  .board-zoom-hint {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+
+    padding: 6px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+
+    font-size: 11px;
+    color: var(--muted);
+
+    pointer-events: none;
+
+    transition: opacity .2s ease;
+  }
+
+  .board-zoom.active .board-zoom-hint {
+    opacity: 0;
+  }
+
+  @media (max-width: 900px) {
+    .board-zoom-lens,
+    .board-zoom-hint {
+      display: none;
+    }
+  }
+
+
+  /* USE-CASE STYLE NUMBERED LIST (recommendations) */
+
+  .use-case {
+    display: grid;
+
+    grid-template-columns:
+      32px
+      1fr;
+
+    gap: 14px;
+
+    padding: 10px 0;
+  }
+
+  .text-column + .text-column {
+    margin-top: 24px;
+  }
+
+  .use-case-num {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 2.9;
+
+    color: var(--muted);
+  }
+
+  .use-case-copy {
+    font-size: 16px;
+    line-height: 1.75;
+
+    color: var(--text);
+  }
+
+  .use-case-copy strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+
+  /* QUOTE (reflection) */
+
+  .reflection-quote {
+    max-width: 720px;
+
+    margin-top: 8px;
+
+    font-size: 20px;
+    line-height: 1.6;
+
+    color: var(--ink);
+  }
+
+
+  /* =========================================================
+     FLOATING MENU
+  ========================================================= */
+
+  .floating-menu {
+    position: fixed;
+
+    left: 16px;
+    top: 50%;
+
+    z-index: 900;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+
+    transform: translateY(-50%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity .25s ease,
+      visibility .25s ease;
+  }
+
+  .floating-menu.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .floating-item {
+    position: relative;
+
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    cursor: pointer;
+  }
+
+  .floating-bar {
+    display: block;
+
+    width: 24px;
+    height: 2px;
+
+    flex: none;
+
+    background: #bdbdbd;
+
+    transform-origin: left center;
+
+    transition:
+      width .35s cubic-bezier(.22, 1, .36, 1),
+      height .25s ease,
+      background .25s ease;
+  }
+
+  .floating-item.active .floating-bar {
+    width: 38px;
+    height: 3px;
+
+    background: var(--ink);
+  }
+
+  .floating-item:hover .floating-bar {
+    width: 48px;
+    height: 3px;
+
+    background: var(--ink);
+  }
+
+  .floating-label {
+    position: absolute;
+
+    left: 58px;
+    top: 50%;
+
+    transform:
+      translateY(-50%)
+      translateX(-7px);
+
+    width: max-content;
+
+    padding: 5px 7px;
+
+    border-radius: 4px;
+
+    background: var(--surface);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.25;
+    white-space: nowrap;
+
+    color: var(--ink);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+      opacity .2s ease,
+      transform .3s cubic-bezier(.22, 1, .36, 1),
+      background .25s ease;
+  }
+
+  .floating-item:hover .floating-label {
+    opacity: 1;
+
+    transform:
+      translateY(-50%)
+      translateX(0);
+  }
+
+
+  /* BACK LINK (top and bottom of the case study) */
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+
+    color: var(--muted);
+
+    transition: color .18s ease;
+  }
+
+  .back-link:hover,
+  .back-link:focus-visible {
+    color: var(--ink);
+  }
+
+  .back-link-arrow {
+    display: inline-block;
+    transition: transform .18s ease;
+  }
+
+  .back-link:hover .back-link-arrow {
+    transform: translateX(-3px);
+  }
+
+  .back-link-top {
+    position: absolute;
+    top: 135px;
+    left: 52px;
+
+    display: inline-flex;
+    margin: 0;
+  }
+
+  .back-link-bottom {
+    display: flex;
+  }
+
+  @media (max-width: 700px) {
+    .back-link-top {
+      left: 32px;
+    }
+  }
+
+
+  /* =========================================================
+     FOOTER
+  ========================================================= */
+
+  .site-footer {
+    width: 100%;
+
+    padding: 0 52px;
+
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+
+    transition:
+      background .25s ease,
+      border-color .25s ease;
+  }
+
+  .site-footer-inner {
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .footer-left .portfolio-label {
+    color: #a0a0a0;
+  }
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+
+    color: var(--muted);
+
+    transition: color .18s ease;
+  }
+
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    color: var(--ink);
+  }
+
+  @media (max-width: 900px) {
+    .site-footer {
+      padding: 0 28px;
+    }
+
+    .site-footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+
+      padding: 24px 0;
+    }
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 1320px) {
+    .floating-menu {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .header {
+      padding: 0 28px;
+    }
+
+    .case-main {
+      padding:
+        110px
+        32px
+        100px;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+
+      gap: 46px;
+
+      padding:
+        72px
+        0
+        80px;
+    }
+
+    .project-meta {
+      padding-top: 0;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 28px;
+    }
+
+    .meta-item {
+      margin: 0;
+    }
+
+    .index-row {
+      grid-template-columns:
+        4px
+        52px
+        minmax(230px, 1fr)
+        1fr;
+
+      gap: 15px;
+    }
+
+    .index-number,
+    .index-title {
+      font-size: 22px;
+    }
+
+    .index-bar {
+      height: 24px;
+    }
+  }
+
+/* MOBILE RESPONSIVE FIX */
+
+@media (max-width: 700px) {
+  .case-main {
+    padding: 88px 22px 80px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 58px 0 68px;
+  }
+
+  .hero > div:first-child {
+    padding-top: 0;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 8.8vw, 56px);
+    overflow-wrap: anywhere;
+  }
+
+  .hero-description {
+    font-size: 17px;
+  }
+
+  .project-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .project-index,
+  .case-section {
+    margin-bottom: 100px;
+  }
+
+ .index-row {
+  grid-template-columns: 4px 42px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 6px;
+  padding: 16px 0;
+}
+
+.index-number,
+.index-title {
+  font-size: 20px;
+}
+
+.index-number {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: start;
+}
+
+.index-title {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.index-desc {
+  display: none;
+}
+
+  .section-title {
+    font-size: 34px;
+  }
+
+  .case-container,
+  .text-column {
+    min-width: 0;
+  }
+}
+  /* Reading progress — replaces the floating section navigation */
+  .floating-menu { display: none !important; }
+  .reading-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    z-index: 10000; pointer-events: none;
+    background: transparent;
+  }
+  .reading-progress__fill {
+    width: 100%; height: 100%; background: #FCE300;
+    transform: scaleX(0); transform-origin: left center;
+    will-change: transform;
+  }
+
+
+    /* Consistent footer link icons and hover underline */
+    .footer-links .footer-link { display: inline-flex; align-items: center; gap: 4px; width: max-content; text-decoration: none; text-underline-offset: 5px; }
+    .footer-links .footer-link:hover, .footer-links .footer-link:focus-visible { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; }
+    .footer-links .footer-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+    @media (max-width: 480px) { .footer-links { flex-wrap: wrap; row-gap: 12px; } }
+
+  
+/* Bottom CTA — centered, with restrained spacing */
+.case-bottom-navigation {
+  padding: 32px 0 24px;
+  display: flex;
+  justify-content: center;
+}
+.more-work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--ink);
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.more-work-link svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+.more-work-link:hover svg {
+  transform: translateX(4px);
+}
+.more-work-link:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .more-work-link svg { transition: none; }
+}
+
+
+
+/* Keep copyright consistent with footer links */
+.site-footer .footer-left, .site-footer .footer-left span { color: var(--muted) !important; }
+/* Participants: watercolor illustration */
+
+#s-participants .participants-layout {
+  position: relative;
+  isolation: isolate;
+}
+
+#s-participants .text-column {
+  position: relative;
+  align-self: stretch;
+  isolation: isolate;
+}
+
+#s-participants .text-column::before {
+  content: "";
+  position: absolute;
+
+  top: 65px;
+  right: -120px;
+  bottom: auto;
+
+  width: min(100%, 650px);
+  height: 300px;
+
+  background:
+    url("assets/interview-survey.png")
+    center / 100% auto
+    no-repeat;
+
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+#s-participants .participant-stats {
+  position: relative;
+  z-index: 1;
+}
+
+body.dark #s-participants .text-column::before {
+  opacity: 0.35;
+}
+
+@media (max-width: 900px) {
+  #s-participants .text-column::before {
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-position: right bottom;
+    opacity: 0.25;
+  }
+
+  body.dark #s-participants .text-column::before {
+    opacity: 0.2;
+  }
+}
+/* Synthesis single image */
+#s-synthesis .synthesis-single {
+  max-width: 720px;
+  margin: 48px auto 0;
+}
+
+#s-synthesis .synthesis-single .zoom-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+/* 합성 이미지 바깥의 카드 장식 제거 */
+#s-synthesis .synthesis-single .zoom-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  box-shadow: none;
+}
+
+#s-synthesis .synthesis-single .zoom-card img {
+  background: transparent;
+}
+
+#s-synthesis .synthesis-single .zoom-card:hover,
+#s-synthesis .synthesis-single .zoom-card:focus-visible {
+  box-shadow: none;
+  transform: none;
+}
+
+#s-synthesis .synthesis-single .zoom-card:hover img,
+#s-synthesis .synthesis-single .zoom-card:focus-visible img {
+  transform: none;
+}
+/* Compact synthesis visual */
+#s-synthesis .synthesis-single {
+  width: 100%;
+  max-width: 520px;
+  margin: 32px auto 0;
+}
+
+/* 이미지 바깥 카드 장식 제거 */
+#s-synthesis .synthesis-single .zoom-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+#s-synthesis .synthesis-single .zoom-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  background: transparent;
+  transition: transform 0.25s ease;
+}
+
+/* 그림자 없이 살짝 확대되는 호버 */
+#s-synthesis .synthesis-single .zoom-card:hover,
+#s-synthesis .synthesis-single .zoom-card:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+#s-synthesis .synthesis-single .zoom-card:hover img,
+#s-synthesis .synthesis-single .zoom-card:focus-visible img {
+  transform: scale(1.025);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #s-synthesis .synthesis-single .zoom-card img {
+    transition: none;
+    transform: none;
+  }
+}
+/* Method: combined image */
+.method-single {
+  width: 100%;
+  max-width: 620px;
+  margin: 32px auto 0;
+}
+
+.method-single .zoom-card {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.method-single .zoom-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  background: transparent;
+}
+
+.method-single .zoom-card:hover,
+.method-single .zoom-card:focus-visible {
+  box-shadow: none;
+}
+@media (max-width: 700px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 16px;
+  }
+
+  .brand {
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 4px;
+  }
+
+  .nav-link {
+    padding: 7px 9px;
+  }
+
+  .nav-text {
+    font-size: 11px;
+  }
+
+  .header-actions {
+    display: none;
+  }
+}
+
+/* Unified case-study header — matches approved Strax navigation */
+.cancerdagboken-page .header {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+}
+.cancerdagboken-page .header-left { justify-self: start; min-width: 0; }
+.cancerdagboken-page .header-right {
+  justify-self: end;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cancerdagboken-page .header-nav {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  justify-self: center;
+  position: static;
+  left: auto;
+  transform: none;
+  margin: 0;
+}
+@media (min-width: 701px) {
+  .cancerdagboken-page .header-right .contact-btn.contact-interactive {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 160px;
+    min-width: 160px;
+    height: 46px;
+    padding: 0 18px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    line-height: 1;
+    flex: none;
+    white-space: nowrap;
+  }
+  .cancerdagboken-page .contact-interactive .contact-default,
+  .cancerdagboken-page .contact-interactive .contact-hover {
+    grid-area: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    width: 100%;
+    transition: opacity .2s ease;
+  }
+  .cancerdagboken-page .contact-interactive .contact-default { opacity: 1; }
+  .cancerdagboken-page .contact-interactive .contact-hover { opacity: 0; }
+  .cancerdagboken-page .contact-interactive:hover .contact-default,
+  .cancerdagboken-page .contact-interactive:focus-visible .contact-default { opacity: 0; }
+  .cancerdagboken-page .contact-interactive:hover .contact-hover,
+  .cancerdagboken-page .contact-interactive:focus-visible .contact-hover { opacity: 1; }
+}
+@media (max-width: 700px) {
+  .cancerdagboken-page .header {
+    height: 88px;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+  }
+  .cancerdagboken-page .header-left {
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    min-width: 0;
+  }
+  .cancerdagboken-page .brand-name { font-size: 13px; white-space: nowrap; }
+  .cancerdagboken-page .header-nav {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    left: -40px;
+    justify-self: center;
+    align-items: center;
+    gap: 0;
+    padding: 3px;
+    white-space: nowrap;
+  }
+  .cancerdagboken-page .header-nav .nav-link { padding: 7px 6px; }
+  .cancerdagboken-page .header-nav .nav-text { font-size: 11px; }
+  .cancerdagboken-page .header-right {
+    display: flex !important;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    gap: 0;
+  }
+  .cancerdagboken-page .contact-btn { display: none !important; }
+  .cancerdagboken-page #theme-btn { display: flex !important; flex: 0 0 32px; }
+}
+@media (max-width: 430px) {
+  .cancerdagboken-page .header { column-gap: 4px; padding: 0 12px; }
+  .cancerdagboken-page .brand-name { font-size: 12px; }
+  .cancerdagboken-page .header-nav .nav-link { padding: 7px 6px; gap: 4px; }
+  .cancerdagboken-page .header-nav .nav-text { font-size: 10px; }
+  .cancerdagboken-page .header-nav .nav-dot { width: 5px; height: 5px; }
+  .cancerdagboken-page #theme-btn { width: 28px; height: 28px; flex-basis: 28px; }
+}
+@media (max-width: 700px) {
+  .back-link-top {
+    top: 112px;
+    left: 22px;
+  }
+
+  .hero {
+  padding-top: 20px;
+  }
+}
+</style>
+
+</head>
+
+
+<body class="case-study-page cancerdagboken-page">
+  <div class="reading-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="reading-progress__fill" id="reading-progress-fill"></div></div>
+
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="header-left">
+<a href="index.html" class="brand-name">Sunghye Park</a>
+    </div>
+
+
+    <nav class="header-nav">
+
+      <a class="nav-link" href="index.html">
+        <span class="nav-dot"></span>
+        <span class="nav-text">Home</span>
+      </a>
+
+      <a class="nav-link active" href="work.html">
+        <span class="nav-dot"></span>
+        <span class="nav-text">Work</span>
+      </a>
+
+      <a class="nav-link" href="about.html">
+        <span class="nav-dot"></span>
+        <span class="nav-text">About</span>
+      </a>
+
+    </nav>
+
+
+    <div class="header-right">
+
+      <a href="mailto:snhye.park@gmail.com" class="contact-btn contact-interactive" aria-label="Send email"><span class="contact-default">Get in touch</span><span class="contact-hover" aria-hidden="true"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>Send email</span></a>
+
+
+      <button
+        id="theme-btn"
+        type="button"
+        aria-label="Toggle dark mode"
+      >
+
+        <div class="theme-icon-wrap">
+
+          <svg
+            id="sun"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="9"
+              cy="9"
+              r="4"
+              stroke="var(--ink)"
+              stroke-width="1.4"
+            ></circle>
+
+            <path
+              d="M9 0.5V2.5M9 15.5V17.5M17.5 9H15.5M2.5 9H0.5M15.02 2.98L13.6 4.4M4.4 13.6L2.98 15.02M15.02 15.02L13.6 13.6M4.4 4.4L2.98 2.98"
+              stroke="var(--ink)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            ></path>
+          </svg>
+
+
+          <svg
+            id="moon"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5A7.5 7.5 0 117.5 2a6 6 0 108.5 8.5Z"
+              fill="var(--ink)"
+            ></path>
+          </svg>
+
+        </div>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- FLOATING MENU -->
+
+  <nav
+    id="floating-menu"
+    class="floating-menu"
+    aria-label="Case study navigation"
+  >
+
+    <a class="floating-item" href="#s-problem" data-section="s-problem">
+      <span class="floating-bar"></span>
+      <span class="floating-label">The problem</span>
+    </a>
+
+    <a class="floating-item" href="#s-method" data-section="s-method">
+      <span class="floating-bar"></span>
+      <span class="floating-label">Method</span>
+    </a>
+
+    <a class="floating-item" href="#s-participants" data-section="s-participants">
+      <span class="floating-bar"></span>
+      <span class="floating-label">Participants</span>
+    </a>
+
+    <a class="floating-item" href="#s-synthesis" data-section="s-synthesis">
+      <span class="floating-bar"></span>
+      <span class="floating-label">Synthesis</span>
+    </a>
+
+    <a class="floating-item" href="#s-findings" data-section="s-findings">
+      <span class="floating-bar"></span>
+      <span class="floating-label">Key findings</span>
+    </a>
+
+    <a class="floating-item" href="#s-recommendations" data-section="s-recommendations">
+      <span class="floating-bar"></span>
+      <span class="floating-label">What we delivered to the client</span>
+    </a>
+
+    <a class="floating-item" href="#s-reflection" data-section="s-reflection">
+      <span class="floating-bar"></span>
+      <span class="floating-label">Limitations</span>
+    </a>
+
+  </nav>
+
+
+
+  <main class="case-main">
+
+    <div class="case-container">
+
+
+      <!-- HERO -->
+
+      <section class="hero">
+
+        <div>
+
+          <a class="back-link back-link-top" href="work.html">
+            <span class="back-link-arrow" aria-hidden="true">&larr;</span>
+            Back to Work
+          </a>
+
+          <span class="eyebrow">
+            UX RESEARCH CASE STUDY
+          </span>
+
+          <h1 class="hero-title">
+            Cancerdagboken
+          </h1>
+
+          <p class="hero-description">
+            A needs analysis for cancer patient support, done with KI
+            Innovations AB and oncologists at Karolinska Institutet, seen
+            through the eyes of contact nurses.
+          </p>
+
+        </div>
+
+
+        <aside class="project-meta">
+
+          <div class="meta-item">
+            <div class="meta-label">Role</div>
+            <div class="meta-value">
+              UX researcher
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Team</div>
+            <div class="meta-value">
+              4 UX design students, Nackademin UX25
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Duration</div>
+            <div class="meta-value">
+              6 weeks, Sep. to Oct. 2025
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Client</div>
+            <div class="meta-value">
+              KI Innovations AB, with oncologists at Karolinska Institutet
+            </div>
+          </div>
+
+          <div class="meta-item">
+            <div class="meta-label">Output</div>
+            <div class="meta-value">
+              A needs-analysis report presented to KI Innovations AB
+            </div>
+          </div>
+
+        </aside>
+
+      </section>
+
+
+
+      <!-- PROJECT INDEX -->
+
+      <section id="project-index" class="project-index">
+
+        <div class="index-label">
+          Project Index
+        </div>
+
+        <a class="index-row" href="#s-problem">
+          <span class="index-bar"></span>
+          <span class="index-number">01</span>
+          <span class="index-title">The problem</span>
+          <span class="index-desc">The brief, and why healthcare staff's perspective was needed.</span>
+        </a>
+
+        <a class="index-row" href="#s-method">
+          <span class="index-bar"></span>
+          <span class="index-number">02</span>
+          <span class="index-title">Method</span>
+          <span class="index-desc">Desk research, a survey, and interviews.</span>
+        </a>
+
+        <a class="index-row" href="#s-participants">
+          <span class="index-bar"></span>
+          <span class="index-number">03</span>
+          <span class="index-title">Participants</span>
+          <span class="index-desc">Who we recruited and how: contact nurses in cancer care.</span>
+        </a>
+
+        <a class="index-row" href="#s-synthesis">
+          <span class="index-bar"></span>
+          <span class="index-number">04</span>
+          <span class="index-title">Synthesis</span>
+          <span class="index-desc">Analyzing the interview and survey results.</span>
+        </a>
+
+        <a class="index-row" href="#s-findings">
+          <span class="index-bar"></span>
+          <span class="index-number">05</span>
+          <span class="index-title">Key findings</span>
+          <span class="index-desc">What we found through the analysis.</span>
+        </a>
+
+        <a class="index-row" href="#s-recommendations">
+          <span class="index-bar"></span>
+          <span class="index-number">06</span>
+          <span class="index-title">What we delivered to the client</span>
+          <span class="index-desc">The needs-analysis (behovsanalys) we delivered to KI, not a product proposal, and what we'd explore next.</span>
+        </a>
+
+        <a class="index-row" href="#s-reflection">
+          <span class="index-bar"></span>
+          <span class="index-number">07</span>
+          <span class="index-title">Limitations</span>
+          <span class="index-desc">What the findings can and cannot tell us.</span>
+        </a>
+
+      </section>
+
+
+
+      <!-- 01 THE PROBLEM -->
+
+      <section id="s-problem" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">The problem</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            A cancer patient's care journey is often long and fragmented,
+            with many contacts, treatments and appointments that can be
+            hard to keep track of. We were commissioned to complement
+            earlier work with the perspective of healthcare staff,
+            specifically contact nurses (kontaktsjuksköterskor).
+          </p>
+        </div>
+
+        <div class="constraint">
+          <span class="constraint-label">Scope, as defined by the brief</span>
+          <p class="constraint-text">
+            <strong>Mapping needs only, not building a solution.</strong>
+            Developing a communication channel between patients and staff was
+            explicitly out of scope. The brief asked us to let the
+            interviews surface needs, rather than starting from a ready-made
+            solution.
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <!-- 02 METHOD -->
+
+      <section id="s-method" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Method</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            We started with desk research (omvärldsbevakning) to explore
+            existing digital tools and support in cancer care. We then
+            planned <strong>in-depth interviews</strong> with contact nurses and added
+            <strong>a survey</strong> to gather more perspectives. Both focused on the
+            challenges nurses observe in patients' daily lives, needs that
+            healthcare cannot always meet, and factors that affect whether
+            support works in practice.
+          </p>
+          <p class="body-text">
+            Before running either, we tested the interview guide and
+            survey, revising questions that could lead participants toward
+            a particular answer and reordering others for a clearer flow.
+          </p>
+        </div>
+
+      <figure class="zoom-figure method-single">
+  <button
+    type="button"
+    class="zoom-card"
+    data-title="Survey and interview question planning"
+    aria-label="Enlarge image: survey and interview question planning"
+  >
+    <img
+      src="assets/method-combined.png"
+      loading="lazy"
+      alt="Survey and interview question planning in Miro, with selected question examples highlighted."
+    >
+  </button>
+
+  <figcaption class="visual-caption">
+    Survey and interview question planning in Miro.
+  </figcaption>
+</figure>
+
+      </section>
+
+
+
+      <!-- 03 PARTICIPANTS -->
+
+      <section id="s-participants" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Participants</h2>
+        </div>
+
+        <div class="participants-layout">
+
+          <div class="text-column">
+            <p class="body-text">
+              Contact nurses were recruited through LinkedIn, hospital
+              contact emails, professional Facebook groups, patient
+              associations, and our own networks, alongside introductions
+              via KI. This gave us <strong>in-depth interviews with three contact
+              nurses</strong> working in different areas of cancer care, with nursing
+              careers ranging from a few years to 30+ years, plus
+              <strong>8 survey responses</strong>. Specific role and workplace details are kept out
+              to protect confidentiality.
+            </p>
+          </div>
+
+          <div class="participant-stats" id="participant-stats">
+
+            <div class="participant-stat">
+              <div class="participant-number">3</div>
+
+              <div>
+                <div class="participant-label">Contact nurses interviewed</div>
+                <p class="participant-desc">Individually, 45 minutes each.</p>
+
+                <div class="participant-icons" aria-hidden="true">
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="participant-stat">
+              <div class="participant-number">8</div>
+
+              <div>
+                <div class="participant-label">Survey responses</div>
+                <p class="participant-desc">From contact nurses in different roles.</p>
+
+                <div class="participant-icons" aria-hidden="true">
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                  <span class="participant-person"></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- 04 SYNTHESIS -->
+
+      <section id="s-synthesis" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Synthesis</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            We coded the three interviews into six categories and grouped
+            the coded comments through affinity mapping. The survey
+            results were mapped in alongside them, so the patterns that
+            showed up in both the interviews and the survey stood out as
+            the strongest.
+          </p>
+        </div>
+
+       <figure class="zoom-figure synthesis-single">
+  <button
+    type="button"
+    class="zoom-card"
+    data-title="Coding and affinity mapping"
+    aria-label="Enlarge image: coding and affinity mapping"
+  >
+    <img
+      src="assets/synthesis-final.png"
+      loading="lazy"
+      alt="Interview coding framework alongside observations grouped through affinity mapping."
+    >
+  </button>
+
+  <figcaption class="visual-caption">
+Coding framework and interview observations grouped in Miro.
+  </figcaption>
+</figure>
+      </section>
+
+      <!-- 05 KEY FINDINGS -->
+
+      <section id="s-findings" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Key findings</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            <strong>1. Support for relatives emerged as a gap.</strong>
+            Support for patients&rsquo; relatives was the most selected unmet
+            need in the survey (6 of 8 nurses). This finding came primarily
+            from the survey, so it needs to be explored directly with
+            patients and their families.
+          </p>
+          <p class="body-text">
+            <strong>2. Nurses see both physical and psychological challenges in patients&rsquo; daily lives.</strong>
+            Fatigue and anxiety, loneliness or poor mental health were each
+            selected by 6 of 8 survey respondents. The interviews also
+            described physical symptoms and emotional uncertainty.
+          </p>
+          <p class="body-text">
+            <strong>3. Some support needs depend on the patient&rsquo;s situation.</strong>
+            The interviews raised gaps in psychological support, help returning to work, and access to sexual-health counselling for particular patient groups. The nurses also described differences in life situation, physical condition and personal outlook, as well as in digital ability, language and how patients take in information.
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <!-- 06 RECOMMENDATIONS -->
+
+      <section id="s-recommendations" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <h2 class="section-title">What we delivered to the client</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            The client asked us to conduct a needs analysis focused on
+            healthcare staff in cancer care. We presented the findings above
+            to KI, along with four recommendations for further
+            investigation.
+          </p>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            <strong>1. Investigate differences between patient groups.</strong>
+            We recommended exploring whether different patient groups have different needs, and how that would affect the digital service, directly with patients.
+          </p>
+          <p class="body-text">
+            <strong>2. Hear directly from patients.</strong>
+            Our research captured nurses&rsquo; perspectives, so we recommended a patient survey to complement the findings.
+          </p>
+          <p class="body-text">
+            <strong>3. Explore sexual-health support across more patient groups.</strong>
+            The need surfaced in relation to particular groups; further research could show whether it applies more widely.
+          </p>
+          <p class="body-text">
+            <strong>4. Consider accessible communication.</strong>
+            We recommended paying attention to differences in digital ability, language and how patients take in information.
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <!-- 07 REFLECTION & LIMITATIONS -->
+
+      <section id="s-reflection" class="case-section">
+
+        <div class="section-header">
+          <span class="section-number">07</span>
+          <h2 class="section-title">Limitations</h2>
+        </div>
+
+        <div class="text-column">
+          <p class="body-text">
+            Our findings reflect contact nurses&rsquo; perspectives, not
+            patients&rsquo; own accounts. We therefore did not build patient
+            personas based on these findings: doing so could turn indirect
+            observations into an &ldquo;average patient&rdquo; who may not
+            exist. This is also why we recommended speaking directly with
+            patients as a next step.
+          </p>
+        </div>
+
+      </section>
+      <!-- Explore more projects -->
+      <div class="case-bottom-navigation">
+        <a class="more-work-link" href="work.html">
+          <span>More projects</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+<path d="M5 12h14M12 5l7 7-7 7"
+      stroke="currentColor"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+              </svg>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+
+      <div class="footer-left">
+        <span>© 2026 Sunghye Park</span>
+      </div>
+
+      <nav class="footer-links" aria-label="Contact links">
+        <a class="footer-link" href="mailto:snhye.park@gmail.com">Email</a>
+        <a class="footer-link" href="https://www.linkedin.com/in/sunghyepark-ux" target="_blank" rel="noopener noreferrer">LinkedIn <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="footer-link" href="Sunghye_Park_CV_UX_design.pdf" target="_blank" rel="noopener noreferrer">CV <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </nav>
+
+    </div>
+  </footer>
+
+
+  <!-- LIGHTBOX -->
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-bar" id="lightbox-bar">
+      <span class="lightbox-title" id="lightbox-title"></span>
+      <div class="lightbox-actions">
+        <button type="button" class="lightbox-btn" id="lightbox-toggle">Actual size</button>
+        <button type="button" class="lightbox-btn" id="lightbox-close">Close</button>
+      </div>
+    </div>
+    <div class="lightbox-stage" id="lightbox-stage" tabindex="0">
+      <img class="lightbox-img" id="lightbox-img" alt="">
+    </div>
+  </div>
+
+
+<script>
+
+  var themeBtn = document.getElementById('theme-btn');
+  var sun = document.getElementById('sun');
+  var moon = document.getElementById('moon');
+
+  var savedTheme = localStorage.getItem('theme');
+
+
+  function updateThemeIcon(isDark) {
+
+    if (isDark) {
+      sun.style.opacity = 0;
+      moon.style.opacity = 1;
+    } else {
+      sun.style.opacity = 1;
+      moon.style.opacity = 0;
+    }
+
+  }
+
+
+  if (savedTheme === 'dark') {
+
+    document.body.classList.add('dark');
+    updateThemeIcon(true);
+
+  } else {
+
+    document.body.classList.remove('dark');
+    updateThemeIcon(false);
+
+  }
+
+
+  themeBtn.addEventListener('click', function () {
+
+    var isDark = document.body.classList.toggle('dark');
+
+    localStorage.setItem(
+      'theme',
+      isDark ? 'dark' : 'light'
+    );
+
+    updateThemeIcon(isDark);
+
+  });
+
+
+
+  /* =========================================================
+     FLOATING MENU VISIBILITY
+
+     Menu appears while the Case Study Index is still visible.
+  ========================================================= */
+
+  var floatingMenu = document.getElementById('floating-menu');
+  var projectIndex = document.getElementById('project-index');
+
+
+  function updateFloatingMenuVisibility() {
+
+    var rect = projectIndex.getBoundingClientRect();
+
+    var shouldShow =
+      rect.top < window.innerHeight * 0.58;
+
+    floatingMenu.classList.toggle('visible', shouldShow);
+
+  }
+
+
+
+  /* =========================================================
+     ACTIVE FLOATING BAR
+  ========================================================= */
+
+  var floatingItems = document.querySelectorAll('.floating-item');
+  var sections = document.querySelectorAll('.case-section');
+
+
+  function updateActiveSection() {
+
+    var currentSection = null;
+    var triggerPoint = 155;
+
+    sections.forEach(function (section) {
+
+      var rect = section.getBoundingClientRect();
+
+      if (rect.top <= triggerPoint) {
+        currentSection = section.id;
+      }
+
+    });
+
+    floatingItems.forEach(function (item) {
+
+      var target = item.getAttribute('data-section');
+
+      item.classList.toggle(
+        'active',
+        target === currentSection
+      );
+
+    });
+
+  }
+
+
+
+  /* =========================================================
+     BACK TO TOP
+
+     Appears when the footer enters the viewport.
+  ========================================================= */
+
+  
+
+
+  /* =========================================================
+     ONE SCROLL UPDATE
+  ========================================================= */
+
+  function handleScroll() {
+    updateFloatingMenuVisibility();
+    updateActiveSection();
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll);
+
+  handleScroll();
+
+
+
+  /* =========================================================
+     PARTICIPANTS: one-time count-in when the stats scroll into view
+  ========================================================= */
+
+  (function initParticipantStats() {
+
+    var stats = document.getElementById('participant-stats');
+    if (!stats) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      return;
+    }
+
+    /* true: the count-in plays again every time the stats scroll
+       back into view. false: it plays only once per page load. */
+    var REPLAY = true;
+
+    stats.classList.add('js-participants');
+
+    var rows = stats.querySelectorAll('.participant-stat');
+
+    var firstNumber = rows[0].querySelector('.participant-number');
+    var firstPeople = rows[0].querySelectorAll('.participant-person');
+    var secondNumber = rows[1].querySelector('.participant-number');
+    var secondPeople = rows[1].querySelectorAll('.participant-person');
+
+    var timers = [];
+    var playing = false;
+
+    function later(fn, ms) {
+      timers.push(setTimeout(fn, ms));
+    }
+
+    function show(el) {
+      el.classList.add('is-visible');
+    }
+
+    function play() {
+
+      playing = true;
+
+      later(function () { show(firstNumber); }, 80);
+
+      firstPeople.forEach(function (person, index) {
+        later(function () { show(person); }, 330 + index * 65);
+      });
+
+      later(function () { show(secondNumber); }, 590);
+
+      secondPeople.forEach(function (person, index) {
+        later(function () { show(person); }, 840 + index * 65);
+      });
+
+    }
+
+    function reset() {
+
+      timers.forEach(clearTimeout);
+      timers = [];
+      playing = false;
+
+      stats.querySelectorAll('.is-visible').forEach(function (el) {
+        el.classList.remove('is-visible');
+      });
+
+    }
+
+    /* Starts as soon as the stats come within 120px of the screen,
+       so the count-in is already running when they scroll into view. */
+
+    var observer = new IntersectionObserver(function (entries) {
+
+      var entry = entries[entries.length - 1];
+
+      if (entry.isIntersecting) {
+
+        if (!playing) play();
+
+        if (!REPLAY) observer.disconnect();
+
+      } else if (REPLAY && playing) {
+
+        reset();
+
+      }
+
+    }, {
+      rootMargin: '0px 0px 120px 0px',
+      threshold: 0
+    });
+
+    observer.observe(stats);
+
+  })();
+
+
+  /* =========================================================
+     BOARD ZOOM (Synthesis affinity map — magnify lens on hover)
+  ========================================================= */
+
+  (function initBoardZoom() {
+
+    var container = document.getElementById('board-zoom');
+    if (!container) return;
+
+    var img = document.getElementById('board-zoom-img');
+    var lens = document.getElementById('board-zoom-lens');
+    var zoomFactor = 2.5;
+
+    function positionLens(clientX, clientY) {
+
+      var rect = container.getBoundingClientRect();
+      var x = clientX - rect.left;
+      var y = clientY - rect.top;
+      var lensSize = lens.offsetWidth;
+
+      lens.style.left = (x - lensSize / 2) + 'px';
+      lens.style.top = (y - lensSize / 2) + 'px';
+
+      lens.style.backgroundImage = 'url(' + img.src + ')';
+      lens.style.backgroundSize =
+        (rect.width * zoomFactor) + 'px ' + (rect.height * zoomFactor) + 'px';
+      lens.style.backgroundPosition =
+        (-(x * zoomFactor - lensSize / 2)) + 'px ' +
+        (-(y * zoomFactor - lensSize / 2)) + 'px';
+
+    }
+
+    container.addEventListener('mousemove', function (e) {
+      container.classList.add('active');
+      positionLens(e.clientX, e.clientY);
+    });
+
+    container.addEventListener('mouseleave', function () {
+      container.classList.remove('active');
+    });
+
+  })();
+
+
+  /* =========================================================
+     LIGHTBOX (click or tap a .zoom-card to view the image larger)
+  ========================================================= */
+
+  (function initLightbox() {
+
+    var cards = document.querySelectorAll('.zoom-card');
+    var box = document.getElementById('lightbox');
+    if (!cards.length || !box) return;
+
+    var bar = document.getElementById('lightbox-bar');
+    var stage = document.getElementById('lightbox-stage');
+    var img = document.getElementById('lightbox-img');
+    var title = document.getElementById('lightbox-title');
+    var toggleBtn = document.getElementById('lightbox-toggle');
+    var closeBtn = document.getElementById('lightbox-close');
+
+    var opener = null;
+    var panning = false;
+    var dragged = false;
+    var startX = 0;
+    var startY = 0;
+    var startLeft = 0;
+    var startTop = 0;
+
+
+    function isOpen() {
+      return box.classList.contains('open');
+    }
+
+    function isActual() {
+      return box.classList.contains('actual');
+    }
+
+    function setActual(on) {
+
+      box.classList.toggle('actual', on);
+      toggleBtn.textContent = on ? 'Fit to screen' : 'Actual size';
+
+      if (on) {
+        stage.scrollLeft = (stage.scrollWidth - stage.clientWidth) / 2;
+        stage.scrollTop = (stage.scrollHeight - stage.clientHeight) / 2;
+      }
+
+    }
+
+    function updateZoomAvailability() {
+
+      var wasActual = isActual();
+
+      box.classList.remove('actual');
+      var fittedWidth = img.getBoundingClientRect().width;
+      var zoomable = img.naturalWidth > fittedWidth + 2;
+      if (wasActual && zoomable) box.classList.add('actual');
+
+      toggleBtn.hidden = !zoomable;
+      box.classList.toggle('no-zoom', !zoomable);
+
+      if (!zoomable) {
+        toggleBtn.textContent = 'Actual size';
+      }
+
+    }
+
+    function open(card) {
+
+      opener = card;
+
+      var source = card.querySelector('img');
+
+      img.onload = updateZoomAvailability;
+      img.src = source.getAttribute('src');
+      img.alt = source.getAttribute('alt') || '';
+      title.textContent = card.getAttribute('data-title') || '';
+
+      box.classList.remove('actual');
+      toggleBtn.textContent = 'Actual size';
+      box.classList.add('open');
+
+      stage.scrollLeft = 0;
+      stage.scrollTop = 0;
+
+      if (img.complete && img.naturalWidth) updateZoomAvailability();
+
+      closeBtn.focus();
+
+    }
+
+    function close() {
+
+      box.classList.remove('open', 'actual');
+      panning = false;
+      stage.classList.remove('panning');
+
+      if (opener) opener.focus();
+
+    }
+
+
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        open(card);
+      });
+    });
+
+    toggleBtn.addEventListener('click', function () {
+      setActual(!isActual());
+    });
+
+    closeBtn.addEventListener('click', close);
+
+    box.addEventListener('click', function (e) {
+
+      if (dragged) {
+        dragged = false;
+        return;
+      }
+
+      if (e.target === img) {
+        if (!toggleBtn.hidden) setActual(!isActual());
+        return;
+      }
+
+      if (e.target === box || e.target === stage || e.target === bar) {
+        close();
+      }
+
+    });
+
+
+    /* Drag to pan (mouse) while viewing at actual size */
+
+    stage.addEventListener('mousedown', function (e) {
+
+      if (!isActual() || e.button !== 0) return;
+
+      panning = true;
+      dragged = false;
+
+      startX = e.clientX;
+      startY = e.clientY;
+      startLeft = stage.scrollLeft;
+      startTop = stage.scrollTop;
+
+      stage.classList.add('panning');
+      e.preventDefault();
+
+    });
+
+    window.addEventListener('mousemove', function (e) {
+
+      if (!panning) return;
+
+      var dx = e.clientX - startX;
+      var dy = e.clientY - startY;
+
+      if (Math.abs(dx) + Math.abs(dy) > 4) dragged = true;
+
+      stage.scrollLeft = startLeft - dx;
+      stage.scrollTop = startTop - dy;
+
+    });
+
+    window.addEventListener('mouseup', function () {
+
+      if (!panning) return;
+
+      panning = false;
+      stage.classList.remove('panning');
+
+    });
+
+
+    /* Keep the page behind from scrolling */
+
+    box.addEventListener('wheel', function (e) {
+
+      var scrollable =
+        stage.scrollHeight > stage.clientHeight ||
+        stage.scrollWidth > stage.clientWidth;
+
+      if (!scrollable || !stage.contains(e.target)) {
+        e.preventDefault();
+      }
+
+    }, { passive: false });
+
+
+    /* Keyboard: Esc closes, Tab stays inside the viewer */
+
+    document.addEventListener('keydown', function (e) {
+
+      if (!isOpen()) return;
+
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+
+      if (e.key !== 'Tab') return;
+
+      var focusable = Array.prototype.filter.call(
+        box.querySelectorAll('button, [tabindex="0"]'),
+        function (el) { return !el.hidden; }
+      );
+
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+
+    });
+
+    window.addEventListener('resize', function () {
+      if (isOpen()) updateZoomAvailability();
+    });
+
+  })();
+
+</script>
+
+
+
+<script>
+/* Reading progress: percentage of the document scrolled */
+(function () {
+  var fill = document.getElementById('reading-progress-fill');
+  if (!fill) return;
+  var ticking = false;
+  function updateProgress() {
+    var doc = document.documentElement;
+    var maxScroll = Math.max(0, doc.scrollHeight - doc.clientHeight);
+    var ratio = maxScroll ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 1;
+    fill.style.transform = 'scaleX(' + ratio + ')';
+    fill.parentElement.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+    ticking = false;
+  }
+  function requestUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(updateProgress);
+    }
+  }
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+  window.addEventListener('load', updateProgress);
+  updateProgress();
+})();
+</script>
+</body>
+</html>
